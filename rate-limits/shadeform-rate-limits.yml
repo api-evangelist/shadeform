@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Shadeform
+providerId: shadeform
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- GPU
+- Cloud
+- Marketplace
+- Compute
+- Infrastructure
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Shadeform REST API authenticates every request with an X-API-KEY header.
+  Specific published request-per-minute or request-per-day limits for the control
+  plane are not documented in the public API reference. The more meaningful limits
+  in a GPU marketplace are capacity-driven: real-time GPU availability per cloud,
+  region, and GPU type (surfaced via GET /instances/types), and any per-account
+  concurrent-instance or quota caps applied to a given account or tier. Specific
+  values are not reconciled in this artifact.
+notes: >-
+  Confirm any documented control-plane request limits, per-account concurrent
+  instance caps, and quota policies in the Shadeform dashboard or by contacting
+  support during reconciliation. Effective deployability is bounded by live GPU
+  availability rather than a fixed API call quota.
+sources:
+- https://docs.shadeform.ai/getting-started/quickstart
+- https://docs.shadeform.ai/api-reference/instances/instances-types
+responseCodes:
+  throttled: 429
+limits:
+- name: Control-Plane Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No specific RPM/RPD published for the management API; verify in dashboard.
+- name: GPU Availability
+  scope: marketplace
+  metric: capacity
+  limit: real-time, per cloud / region / GPU type
+  notes: Launch success depends on live availability; query GET /instances/types with available=true.
+- name: Concurrent Instances
+  scope: account
+  metric: instances
+  limit: see provider documentation
+  notes: Per-account concurrent instance / quota caps may apply by tier; not reconciled.
+policies:
+- name: API Key Authentication
+  description: Every request must carry a valid X-API-KEY header issued from the Shadeform dashboard.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Availability-Aware Retries
+  description: When a launch fails for lack of capacity, re-query instance types/availability and retry against an available cloud, region, or GPU type.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

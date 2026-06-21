@@ -1,0 +1,95 @@
+aid: shadeform
+name: Shadeform
+review:
+  question: Does Shadeform expose a documented public WebSocket or webhook API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Shadeform's public API reference
+    (docs.shadeform.ai) documents only synchronous REST (HTTPS) endpoints under
+    https://api.shadeform.ai/v1 authenticated with an X-API-KEY header. No
+    WebSocket (ws:// or wss://), Server-Sent Events (SSE), or outbound webhook
+    delivery surface is documented. Asynchronous notification needs are handled
+    in-band by polling instance status (GET /instances/{id}/info) and by the
+    `alert` and `auto_delete` objects set at instance creation, which trigger
+    email-style alerts and automatic teardown on a date or spend threshold rather
+    than HTTP callbacks.
+findings:
+  summary: |
+    Shadeform does not publish a documented public WebSocket or webhook API. The
+    GPU cloud marketplace exposes a REST (HTTPS) control plane under
+    https://api.shadeform.ai/v1, with every request authenticated by an
+    X-API-KEY header. Clients learn about instance state by polling
+    GET /instances/{id}/info (status transitions: creating, pending_provider,
+    pending, active, error, deleting, deleted). Event-driven needs are met
+    through the `alert` object (notify on a date or spend limit) and the
+    `auto_delete` object (tear down on a date or spend limit) supplied when an
+    instance or template is created, not through subscribed event streams or
+    outbound HTTP webhooks.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.shadeform.ai/v1
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Shadeform API reference as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming surface is documented.
+    - protocol: Webhook
+      scheme: https
+      documented: false
+      note: No outbound webhook subscription/delivery API is documented; alert and auto_delete objects cover date/spend triggers instead.
+  endpointsConfirmedRest:
+    - GET  https://api.shadeform.ai/v1/instances
+    - GET  https://api.shadeform.ai/v1/instances/types
+    - POST https://api.shadeform.ai/v1/instances/create
+    - GET  https://api.shadeform.ai/v1/instances/{id}/info
+    - POST https://api.shadeform.ai/v1/instances/{id}/restart
+    - POST https://api.shadeform.ai/v1/instances/{id}/update
+    - POST https://api.shadeform.ai/v1/instances/{id}/delete
+    - GET  https://api.shadeform.ai/v1/templates
+    - GET  https://api.shadeform.ai/v1/templates/featured
+    - POST https://api.shadeform.ai/v1/templates/save
+    - GET  https://api.shadeform.ai/v1/templates/{template_id}/info
+    - POST https://api.shadeform.ai/v1/templates/{template_id}/update
+    - POST https://api.shadeform.ai/v1/templates/{template_id}/delete
+    - GET  https://api.shadeform.ai/v1/volumes
+    - GET  https://api.shadeform.ai/v1/volumes/types
+    - POST https://api.shadeform.ai/v1/volumes/create
+    - GET  https://api.shadeform.ai/v1/volumes/{id}/info
+    - POST https://api.shadeform.ai/v1/volumes/{id}/delete
+    - GET  https://api.shadeform.ai/v1/sshkeys
+    - POST https://api.shadeform.ai/v1/sshkeys/add
+    - GET  https://api.shadeform.ai/v1/sshkeys/{id}/info
+    - POST https://api.shadeform.ai/v1/sshkeys/{id}/setdefault
+    - POST https://api.shadeform.ai/v1/sshkeys/{id}/delete
+sources:
+  - url: https://docs.shadeform.ai/getting-started/quickstart
+    type: Documentation
+    note: Lists REST base URL https://api.shadeform.ai/v1 and X-API-KEY auth; no WebSocket/webhook mentioned.
+  - url: https://docs.shadeform.ai/api-reference/instances/instances
+    type: APIReference
+    note: All documented instance endpoints are HTTPS REST; state is polled via /instances/{id}/info.
+  - url: https://docs.shadeform.ai/api-reference/instances/instances-create
+    type: APIReference
+    note: alert and auto_delete objects cover date/spend-threshold notifications and teardown in lieu of webhooks.
+  - url: https://docs.shadeform.ai/llms.txt
+    type: Documentation
+    note: Documentation index enumerates instances, templates, volumes, and sshkeys REST pages; no webhooks page exists.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket, SSE, or webhook protocol surface exists, so no AsyncAPI
+    document was authored. The catalog models the documented REST control plane
+    only, across five sub-APIs (Instances, Instance Types & Availability,
+    Templates, Volumes, SSH Keys).
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

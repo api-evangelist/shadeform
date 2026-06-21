@@ -1,0 +1,98 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Shadeform
+providerId: shadeform
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- GPU
+- Cloud
+- Marketplace
+- Compute
+- Infrastructure
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Shadeform spend. Shadeform is a GPU cloud marketplace that bills
+  usage-based, per-GPU-hour rates that pass through from the underlying cloud
+  provider, plus capacity-over-time charges for persistent volumes. There are no
+  per-token or per-request fees. The dominant cost driver is GPU hours, so cost
+  control centers on right-sizing GPU type, routing to the cheapest available
+  provider/region, and aggressively reclaiming idle instances with auto-delete and
+  spend alerts. Per-GPU rates are dynamic marketplace passthrough and are not
+  reconciled here.
+notes: >-
+  Per-GPU-hour rates change continuously with marketplace supply and demand;
+  verify live rates via GET /instances/types (hourly_price, in cents) and the
+  Shadeform GPU directory during reconciliation.
+sources:
+- https://www.shadeform.ai
+- https://docs.shadeform.ai/api-reference/instances/instances-types
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Shadeform
+serviceCategory: Compute
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Shadeform GPU Marketplace
+  ServiceCategory: Compute
+  ProviderName: Shadeform
+  PublisherName: Shadeform
+  InvoiceIssuerName: Shadeform
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: gpu_instance_hours
+  description: GPU instance runtime billed per hour at the underlying provider's passthrough rate.
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - cloud
+  - region
+  - shade_instance_type
+  - gpu_type
+- name: volume_gb_hours
+  description: Persistent volume capacity billed over time (GB-hours).
+  unit: gb_hours
+  aggregation: sum
+  dimensions:
+  - account
+  - cloud
+  - region
+- name: instance_count
+  description: Number of active instances; tracked for concurrency and allocation, not directly billed.
+  unit: instances
+  aggregation: max
+  dimensions:
+  - account
+  - cloud
+  - tags
+principles:
+- name: Visibility
+  description: Pull per-instance cost_estimate and hourly_price from the API; tag instances per workload/team for chargeback.
+- name: Allocation
+  description: Use instance tags and per-key usage to map GPU hours and volume storage to internal cost centers.
+- name: Optimization
+  description: Route launches to the cheapest available cloud/region/GPU type via GET /instances/types sorted by price; right-size GPU type; set auto_delete and spend alerts to reclaim idle instances.
+- name: Accountability
+  description: Assign owners per project; review GPU-hour and volume spend against budgets and enforce auto-delete thresholds.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

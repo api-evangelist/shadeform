@@ -1,0 +1,871 @@
+{
+  "item": [
+    {
+      "id": "cf33377e-b230-44cb-80d4-9f38ead4772c",
+      "name": "Instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "894bae97-09cd-41d7-b9cc-ed735a901c80",
+          "name": "List instances",
+          "request": {
+            "name": "List instances",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "4caf85a2-5140-4e4c-9e10-b27d772cebb3",
+          "name": "Create an instance",
+          "request": {
+            "name": "Create an instance",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cloud\": \"hyperstack\",\n  \"region\": \"canada-1\",\n  \"shade_instance_type\": \"A6000\",\n  \"shade_cloud\": true,\n  \"name\": \"my-instance\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f3763bb3-b273-4510-aa51-e7ef43aece2c",
+          "name": "Get instance info",
+          "request": {
+            "name": "Get instance info",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances",
+                "{id}",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "ec874267-8c14-48d2-9f7e-c09b4ec68019",
+          "name": "Restart an instance",
+          "request": {
+            "name": "Restart an instance",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances",
+                "{id}",
+                "restart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "3eb87adf-30d6-4775-9994-4575c30a3bec",
+          "name": "Update an instance",
+          "request": {
+            "name": "Update an instance",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances",
+                "{id}",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-instance\",\n  \"tags\": [\n    \"team-ml\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "7faf3dd0-d26b-49ed-acb2-4a525c270a4e",
+          "name": "Delete an instance",
+          "request": {
+            "name": "Delete an instance",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances",
+                "{id}",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "31e97273-f7b0-41b5-9ea8-49b683a75d69",
+      "name": "Instance Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67e31f75-8553-40f4-9a9e-dbb3aaf3b11f",
+          "name": "List instance types and availability",
+          "request": {
+            "name": "List instance types and availability",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "instances",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "cloud",
+                  "value": ""
+                },
+                {
+                  "key": "region",
+                  "value": ""
+                },
+                {
+                  "key": "gpu_type",
+                  "value": ""
+                },
+                {
+                  "key": "num_gpus",
+                  "value": ""
+                },
+                {
+                  "key": "available",
+                  "value": "true"
+                },
+                {
+                  "key": "sort",
+                  "value": "price"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "845a35e0-0a9c-4239-85ee-a22eab8a744a",
+      "name": "Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09dcd1b6-2ac4-425c-a1ba-bfcf4555478a",
+          "name": "List templates",
+          "request": {
+            "name": "List templates",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "91e50c9e-9d87-4a4c-b79d-35377e519d1e",
+          "name": "List featured templates",
+          "request": {
+            "name": "List featured templates",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "featured"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "33de74b9-da0e-4f66-b4a2-ff1a5084ba4d",
+          "name": "Save a template",
+          "request": {
+            "name": "Save a template",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "save"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-template\",\n  \"public\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "d22688e0-ce1a-4279-a665-f71e2b44e6fb",
+          "name": "Get template info",
+          "request": {
+            "name": "Get template info",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "{template_id}",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "cdebb71e-6cbc-4870-bde8-2eadb8f45f98",
+          "name": "Update a template",
+          "request": {
+            "name": "Update a template",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "{template_id}",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-template\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "e13584ee-122a-493b-b14f-9a613b25defb",
+          "name": "Delete a template",
+          "request": {
+            "name": "Delete a template",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "{template_id}",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "67b95a5c-4412-4799-a57c-ed4b6f00c7c1",
+      "name": "Volumes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bd7ffe4-f54c-4393-a342-e8bd201f594a",
+          "name": "List volumes",
+          "request": {
+            "name": "List volumes",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "volumes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "11e2614f-b91a-49a4-9627-6da794fc9a65",
+          "name": "List volume types",
+          "request": {
+            "name": "List volume types",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "volumes",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "0ca6db9d-6e12-41d2-b7d6-c74045c7fee6",
+          "name": "Create a volume",
+          "request": {
+            "name": "Create a volume",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "volumes",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cloud\": \"hyperstack\",\n  \"region\": \"canada-1\",\n  \"size_in_gb\": 100,\n  \"name\": \"my-volume\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a8f496ad-3f96-4a96-a70f-1620f1cb3bc8",
+          "name": "Get volume info",
+          "request": {
+            "name": "Get volume info",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "volumes",
+                "{id}",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "e18a1064-6661-4e51-b466-3b21e7ede58d",
+          "name": "Delete a volume",
+          "request": {
+            "name": "Delete a volume",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "volumes",
+                "{id}",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "d9216da3-317a-453f-8b0f-6d59fbb86f8e",
+      "name": "SSH Keys",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "323118b2-db6c-4722-b955-a7a077ba5527",
+          "name": "List SSH keys",
+          "request": {
+            "name": "List SSH keys",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "sshkeys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "728138d5-5692-4020-bc91-928e93bf83bd",
+          "name": "Add an SSH key",
+          "request": {
+            "name": "Add an SSH key",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "sshkeys",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-key\",\n  \"public_key\": \"ssh-ed25519 AAAA...\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "0a367e97-2d5e-4bee-9802-0e7374680ff1",
+          "name": "Get SSH key info",
+          "request": {
+            "name": "Get SSH key info",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "sshkeys",
+                "{id}",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "3102453d-0621-4721-b183-c476a4dc0776",
+          "name": "Set default SSH key",
+          "request": {
+            "name": "Set default SSH key",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "sshkeys",
+                "{id}",
+                "setdefault"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f10422a4-1ccd-4fcf-9114-35533bf89fb0",
+          "name": "Delete an SSH key",
+          "request": {
+            "name": "Delete an SSH key",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "sshkeys",
+                "{id}",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shadeform.ai/v1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "apiKey"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "519b9d1e-380f-4820-9976-bcd6ff83c029",
+    "name": "Shadeform API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shadeform GPU cloud marketplace REST API.\n\nContact Support:\n Name: Shadeform Support\n Email: info@shadeform.ai",
+      "type": "text/plain"
+    }
+  }
+}

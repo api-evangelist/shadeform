@@ -1,0 +1,92 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Shadeform
+providerId: shadeform
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- GPU
+- Cloud
+- Marketplace
+- Compute
+- Infrastructure
+- Plans
+description: >-
+  Shadeform is a GPU cloud marketplace that bills usage-based, per-GPU-hour rates.
+  Each instance type carries an hourly price (exposed by the API in cents) that
+  passes through from the underlying cloud provider, so effective rates vary by
+  GPU type (H100, H200, A100, A6000, L40S, B200, etc.), provider, region, and
+  real-time availability. Persistent volumes are billed by capacity over time.
+  There is no per-token or per-request charge; you pay for the compute you run.
+  Specific per-GPU hourly rates are dynamic and not reconciled in this artifact.
+notes: >-
+  Per-GPU-hour prices are marketplace passthrough and change continuously with
+  provider supply and demand. Query GET /instances/types (hourly_price, in cents)
+  for live rates, or the Shadeform GPU directory, during reconciliation. Free-tier
+  and committed/Scale (enterprise) terms were not confirmed against a public
+  pricing page at creation time.
+sources:
+- https://www.shadeform.ai
+- https://docs.shadeform.ai/api-reference/instances/instances-types
+- https://shadeform.com/directory/instances
+plans:
+- id: shadeform-on-demand
+  name: On-Demand GPU Marketplace
+  type: usage
+  description: >-
+    Pay-as-you-go GPU instances launched across many clouds, billed per GPU hour
+    at the underlying provider's passthrough rate with no per-token or per-request
+    fees.
+  entries:
+  - label: GPU Instance (per hour)
+    name: gpu_instance_hour
+    type: usage
+    metric: hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-GPU-hour passthrough (see GET /instances/types hourly_price, in cents)
+    userMultiplied: false
+  - label: Persistent Volume Storage
+    name: volume_storage
+    type: usage
+    metric: gb_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-GB capacity over time (provider passthrough)
+    userMultiplied: false
+  elements:
+  - name: Instances
+  - name: Instance Types & Availability
+  - name: Templates
+  - name: Volumes
+  - name: SSH Keys
+- id: shadeform-enterprise
+  name: Enterprise / Scale
+  type: enterprise
+  description: >-
+    Committed capacity, reserved GPUs, team and quota management, and negotiated
+    terms for larger workloads. Contact Shadeform sales. Terms not reconciled in
+    this artifact.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Reserved / Committed GPUs
+  - name: Team & Quota Management
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

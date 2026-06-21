@@ -1,0 +1,149 @@
+aid: shadeform
+url: https://raw.githubusercontent.com/api-evangelist/shadeform/refs/heads/main/apis.yml
+name: Shadeform
+kind: company
+description: Shadeform is a GPU cloud marketplace that exposes a single REST API for
+  deploying and managing GPU compute across many underlying clouds. One interface
+  lets you compare real-time availability and per-GPU-hour pricing, then launch,
+  inspect, restart, and delete instances, attach volumes and SSH keys, and reuse
+  saved launch templates across providers such as Lambda, Nebius, Crusoe, and
+  Hyperstack.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- GPU
+- Cloud
+- Marketplace
+- Compute
+- Infrastructure
+- AI
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: shadeform:shadeform-instances-api
+  name: Shadeform Instances API
+  tags:
+  - Instances
+  - GPU
+  - Compute
+  - Provisioning
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.shadeform.ai/api-reference/instances/instances
+  baseURL: https://api.shadeform.ai/v1
+  properties:
+  - url: https://docs.shadeform.ai/getting-started/quickstart
+    type: Documentation
+  - url: https://docs.shadeform.ai/api-reference/instances/instances
+    type: APIReference
+  - url: openapi/shadeform-openapi.yml
+    type: OpenAPI
+  - url: collections/shadeform.postman_collection.json
+    type: Postman
+  description: Create, list, inspect, restart, update, and delete GPU instances across
+    every supported cloud through one standardized interface, with Docker or script
+    launch configurations, auto-delete and spend-alert triggers, tags, and
+    environment variables.
+- aid: shadeform:shadeform-instance-types-availability-api
+  name: Shadeform Instance Types & Availability API
+  tags:
+  - Instance Types
+  - Availability
+  - Pricing
+  - GPU
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.shadeform.ai/api-reference/instances/instances-types
+  baseURL: https://api.shadeform.ai/v1
+  properties:
+  - url: https://docs.shadeform.ai/api-reference/instances/instances-types
+    type: Documentation
+  - url: https://docs.shadeform.ai/api-reference/instances/instances-types
+    type: APIReference
+  - url: openapi/shadeform-openapi.yml
+    type: OpenAPI
+  - url: collections/shadeform.postman_collection.json
+    type: Postman
+  description: Query standardized GPU instance types, their configurations, hourly
+    price in cents, deployment type, boot-time estimates, and per-region
+    availability across providers, with filtering by cloud, region, GPU type, GPU
+    count, and availability, and sorting by price.
+- aid: shadeform:shadeform-templates-api
+  name: Shadeform Templates API
+  tags:
+  - Templates
+  - Launch Configuration
+  - Reuse
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.shadeform.ai/api-reference/templates/templates
+  baseURL: https://api.shadeform.ai/v1
+  properties:
+  - url: https://docs.shadeform.ai/api-reference/templates/templates
+    type: Documentation
+  - url: https://docs.shadeform.ai/api-reference/templates/templates
+    type: APIReference
+  - url: openapi/shadeform-openapi.yml
+    type: OpenAPI
+  - url: collections/shadeform.postman_collection.json
+    type: Postman
+  description: Save, list, inspect, update, and delete reusable launch templates that
+    bundle launch configuration, auto-delete and alert thresholds, volume mounts,
+    networking, tags, and environment variables; includes a featured/public
+    templates listing.
+- aid: shadeform:shadeform-volumes-api
+  name: Shadeform Volumes API
+  tags:
+  - Volumes
+  - Storage
+  - Block Storage
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.shadeform.ai/api-reference/volumes/volumes
+  baseURL: https://api.shadeform.ai/v1
+  properties:
+  - url: https://docs.shadeform.ai/api-reference/volumes/volumes
+    type: Documentation
+  - url: https://docs.shadeform.ai/api-reference/volumes/volumes
+    type: APIReference
+  - url: openapi/shadeform-openapi.yml
+    type: OpenAPI
+  - url: collections/shadeform.postman_collection.json
+    type: Postman
+  description: Create, list, inspect, and delete persistent storage volumes scoped to
+    a cloud and region, and query the supported volume types, to attach durable
+    storage to GPU instances.
+- aid: shadeform:shadeform-ssh-keys-api
+  name: Shadeform SSH Keys API
+  tags:
+  - SSH Keys
+  - Access
+  - Security
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.shadeform.ai/api-reference/sshkeys/sshkeys
+  baseURL: https://api.shadeform.ai/v1
+  properties:
+  - url: https://docs.shadeform.ai/api-reference/sshkeys/sshkeys
+    type: Documentation
+  - url: https://docs.shadeform.ai/api-reference/sshkeys/sshkeys
+    type: APIReference
+  - url: openapi/shadeform-openapi.yml
+    type: OpenAPI
+  - url: collections/shadeform.postman_collection.json
+    type: Postman
+  description: Add, list, inspect, delete, and set a default SSH public key used to
+    grant secure shell access to launched GPU instances.
+common:
+- type: GitHubOrganization
+  url: https://github.com/shadeform
+- type: LinkedIn
+  url: https://www.linkedin.com/company/shadeformai
+- type: Website
+  url: https://www.shadeform.ai
+- type: Documentation
+  url: https://docs.shadeform.ai
+- type: Plans
+  url: plans/shadeform-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/shadeform-rate-limits.yml
+- type: FinOps
+  url: finops/shadeform-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

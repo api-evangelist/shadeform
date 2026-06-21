@@ -1,0 +1,336 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shadeform API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "X-API-KEY",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/instances"
+          },
+          "docs": "List instances"
+        },
+        {
+          "info": {
+            "name": "Create an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/create",
+            "body": {
+              "type": "json",
+              "data": "{\"cloud\": \"hyperstack\", \"region\": \"canada-1\", \"shade_instance_type\": \"A6000\", \"shade_cloud\": true, \"name\": \"my-instance\"}"
+            }
+          },
+          "docs": "Create an instance"
+        },
+        {
+          "info": {
+            "name": "Get instance info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/instances/{id}/info"
+          },
+          "docs": "Get instance info"
+        },
+        {
+          "info": {
+            "name": "Restart an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/{id}/restart"
+          },
+          "docs": "Restart an instance"
+        },
+        {
+          "info": {
+            "name": "Update an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/{id}/update",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"my-instance\", \"tags\": [\"team-ml\"]}"
+            }
+          },
+          "docs": "Update an instance"
+        },
+        {
+          "info": {
+            "name": "Delete an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/{id}/delete"
+          },
+          "docs": "Delete an instance"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instance Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instance types and availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/instances/types?available=true&sort=price"
+          },
+          "docs": "List instance types and availability"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/templates"
+          },
+          "docs": "List templates"
+        },
+        {
+          "info": {
+            "name": "List featured templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/templates/featured"
+          },
+          "docs": "List featured templates"
+        },
+        {
+          "info": {
+            "name": "Save a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/templates/save",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"my-template\", \"public\": false}"
+            }
+          },
+          "docs": "Save a template"
+        },
+        {
+          "info": {
+            "name": "Get template info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/templates/{template_id}/info"
+          },
+          "docs": "Get template info"
+        },
+        {
+          "info": {
+            "name": "Update a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/templates/{template_id}/update",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"my-template\"}"
+            }
+          },
+          "docs": "Update a template"
+        },
+        {
+          "info": {
+            "name": "Delete a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/templates/{template_id}/delete"
+          },
+          "docs": "Delete a template"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Volumes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/volumes"
+          },
+          "docs": "List volumes"
+        },
+        {
+          "info": {
+            "name": "List volume types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/volumes/types"
+          },
+          "docs": "List volume types"
+        },
+        {
+          "info": {
+            "name": "Create a volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/volumes/create",
+            "body": {
+              "type": "json",
+              "data": "{\"cloud\": \"hyperstack\", \"region\": \"canada-1\", \"size_in_gb\": 100, \"name\": \"my-volume\"}"
+            }
+          },
+          "docs": "Create a volume"
+        },
+        {
+          "info": {
+            "name": "Get volume info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/volumes/{id}/info"
+          },
+          "docs": "Get volume info"
+        },
+        {
+          "info": {
+            "name": "Delete a volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/volumes/{id}/delete"
+          },
+          "docs": "Delete a volume"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSH Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SSH keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/sshkeys"
+          },
+          "docs": "List SSH keys"
+        },
+        {
+          "info": {
+            "name": "Add an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/sshkeys/add",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"my-key\", \"public_key\": \"ssh-ed25519 AAAA...\"}"
+            }
+          },
+          "docs": "Add an SSH key"
+        },
+        {
+          "info": {
+            "name": "Get SSH key info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/sshkeys/{id}/info"
+          },
+          "docs": "Get SSH key info"
+        },
+        {
+          "info": {
+            "name": "Set default SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/sshkeys/{id}/setdefault"
+          },
+          "docs": "Set default SSH key"
+        },
+        {
+          "info": {
+            "name": "Delete an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/sshkeys/{id}/delete"
+          },
+          "docs": "Delete an SSH key"
+        }
+      ]
+    }
+  ]
+}
