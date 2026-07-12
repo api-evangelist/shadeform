@@ -130,6 +130,10 @@ apis:
   description: Add, list, inspect, delete, and set a default SSH public key used to
     grant secure shell access to launched GPU instances.
 common:
+- type: DomainSecurity
+  url: security/shadeform-domain-security.yml
+- type: Authentication
+  url: authentication/shadeform-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/shadeform
 - type: LinkedIn
@@ -144,6 +148,8 @@ common:
   url: rate-limits/shadeform-rate-limits.yml
 - type: FinOps
   url: finops/shadeform-finops.yml
+- url: https://shadeform.com/resources/articles
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
