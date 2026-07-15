@@ -130,6 +130,8 @@ apis:
   description: Add, list, inspect, delete, and set a default SSH public key used to
     grant secure shell access to launched GPU instances.
 common:
+- type: AgenticAccess
+  url: agentic-access/shadeform-agentic-access.yml
 - type: DomainSecurity
   url: security/shadeform-domain-security.yml
 - type: Authentication
