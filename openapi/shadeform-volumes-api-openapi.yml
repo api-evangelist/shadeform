@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: Shadeform Instance Types Volumes API
+  description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
+  termsOfService: https://www.shadeform.ai/terms
+  contact:
+    name: Shadeform Support
+    email: info@shadeform.ai
+  version: '1.0'
+servers:
+- url: https://api.shadeform.ai/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: Volumes
+  description: Manage persistent storage volumes.
+paths:
+  /volumes:
+    get:
+      operationId: listVolumes
+      tags:
+      - Volumes
+      summary: List volumes
+      description: Retrieve all persistent storage volumes for the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /volumes/types:
+    get:
+      operationId: listVolumeTypes
+      tags:
+      - Volumes
+      summary: List volume types
+      description: Retrieve the supported persistent storage volume types by cloud and region.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeTypesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /volumes/create:
+    post:
+      operationId: createVolume
+      tags:
+      - Volumes
+      summary: Create a volume
+      description: Create a persistent storage volume of a given size on a cloud and region.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVolumeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIdResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /volumes/{id}/info:
+    get:
+      operationId: getVolume
+      tags:
+      - Volumes
+      summary: Get volume info
+      description: Retrieve details for a single volume by its ID.
+      parameters:
+      - $ref: '#/components/parameters/VolumeId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /volumes/{id}/delete:
+    post:
+      operationId: deleteVolume
+      tags:
+      - Volumes
+      summary: Delete a volume
+      description: Delete a persistent storage volume by its ID.
+      parameters:
+      - $ref: '#/components/parameters/VolumeId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateVolumeRequest:
+      type: object
+      required:
+      - cloud
+      - region
+      - size_in_gb
+      - name
+      properties:
+        cloud:
+          type: string
+          example: hyperstack
+        region:
+          type: string
+          example: canada-1
+        size_in_gb:
+          type: integer
+          example: 100
+        name:
+          type: string
+          example: My storage volume
+    VolumeType:
+      type: object
+      properties:
+        cloud:
+          type: string
+        region:
+          type: string
+        min_size_in_gb:
+          type: integer
+        max_size_in_gb:
+          type: integer
+        hourly_price:
+          type: integer
+          description: Hourly price per GB in cents.
+    VolumeTypesResponse:
+      type: object
+      properties:
+        volume_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeType'
+    Volume:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        cloud:
+          type: string
+        region:
+          type: string
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    VolumesResponse:
+      type: object
+      properties:
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volume'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    CreateIdResponse:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
+  parameters:
+    VolumeId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the volume.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key issued from the Shadeform dashboard.

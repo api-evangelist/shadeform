@@ -1,0 +1,343 @@
+openapi: 3.0.1
+info:
+  title: Shadeform Instance Types Templates API
+  description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
+  termsOfService: https://www.shadeform.ai/terms
+  contact:
+    name: Shadeform Support
+    email: info@shadeform.ai
+  version: '1.0'
+servers:
+- url: https://api.shadeform.ai/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: Templates
+  description: Save and reuse launch templates.
+paths:
+  /templates:
+    get:
+      operationId: listTemplates
+      tags:
+      - Templates
+      summary: List templates
+      description: Retrieve all launch templates saved by the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /templates/featured:
+    get:
+      operationId: listFeaturedTemplates
+      tags:
+      - Templates
+      summary: List featured templates
+      description: Retrieve featured/public launch templates.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /templates/save:
+    post:
+      operationId: saveTemplate
+      tags:
+      - Templates
+      summary: Save a template
+      description: Save a reusable launch template bundling launch configuration, auto-delete and alert thresholds, volume mounts, networking, tags, and environment variables.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateSaveRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIdResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /templates/{template_id}/info:
+    get:
+      operationId: getTemplate
+      tags:
+      - Templates
+      summary: Get template info
+      description: Retrieve details for a single template by its ID.
+      parameters:
+      - $ref: '#/components/parameters/TemplateId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /templates/{template_id}/update:
+    post:
+      operationId: updateTemplate
+      tags:
+      - Templates
+      summary: Update a template
+      description: Update the configuration of an existing template by its ID.
+      parameters:
+      - $ref: '#/components/parameters/TemplateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateSaveRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /templates/{template_id}/delete:
+    post:
+      operationId: deleteTemplate
+      tags:
+      - Templates
+      summary: Delete a template
+      description: Delete a template by its ID.
+      parameters:
+      - $ref: '#/components/parameters/TemplateId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Template:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+      - $ref: '#/components/schemas/TemplateSaveRequest'
+    ScriptConfiguration:
+      type: object
+      required:
+      - base64_script
+      properties:
+        base64_script:
+          type: string
+          description: Base64-encoded startup script.
+    TemplateSaveRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        public:
+          type: boolean
+        launch_configuration:
+          $ref: '#/components/schemas/LaunchConfiguration'
+        auto_delete:
+          $ref: '#/components/schemas/AutoDelete'
+        alert:
+          $ref: '#/components/schemas/Alert'
+        volume_mount:
+          $ref: '#/components/schemas/VolumeMount'
+        networking:
+          $ref: '#/components/schemas/Networking'
+        tags:
+          type: array
+          items:
+            type: string
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    DockerConfiguration:
+      type: object
+      required:
+      - image
+      properties:
+        image:
+          type: string
+          description: Docker image URI.
+        args:
+          type: string
+        shared_memory_in_gb:
+          type: integer
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+        port_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortMapping'
+        volume_mounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeMount'
+        registry_credentials:
+          $ref: '#/components/schemas/RegistryCredentials'
+    TemplatesResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+    PortMapping:
+      type: object
+      properties:
+        host_port:
+          type: integer
+        container_port:
+          type: integer
+    CreateIdResponse:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
+    LaunchConfiguration:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
+    VolumeMount:
+      type: object
+      properties:
+        host_path:
+          type: string
+        container_path:
+          type: string
+    AutoDelete:
+      type: object
+      description: Triggers that automatically delete the instance.
+      properties:
+        delete_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    Env:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Networking:
+      type: object
+      description: Firewall and network rules for a template.
+      properties:
+        firewall_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              port:
+                type: integer
+              protocol:
+                type: string
+              source:
+                type: string
+    RegistryCredentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    TemplateId:
+      name: template_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the template.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key issued from the Shadeform dashboard.

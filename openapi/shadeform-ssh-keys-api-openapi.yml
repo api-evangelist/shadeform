@@ -1,0 +1,195 @@
+openapi: 3.0.1
+info:
+  title: Shadeform Instance Types SSH Keys API
+  description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
+  termsOfService: https://www.shadeform.ai/terms
+  contact:
+    name: Shadeform Support
+    email: info@shadeform.ai
+  version: '1.0'
+servers:
+- url: https://api.shadeform.ai/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: SSH Keys
+  description: Manage SSH public keys for instance access.
+paths:
+  /sshkeys:
+    get:
+      operationId: listSshKeys
+      tags:
+      - SSH Keys
+      summary: List SSH keys
+      description: Retrieve all SSH public keys registered on the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeysResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sshkeys/add:
+    post:
+      operationId: addSshKey
+      tags:
+      - SSH Keys
+      summary: Add an SSH key
+      description: Register a new SSH public key for use when launching instances.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSshKeyRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIdResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sshkeys/{id}/info:
+    get:
+      operationId: getSshKey
+      tags:
+      - SSH Keys
+      summary: Get SSH key info
+      description: Retrieve details for a single SSH key by its ID.
+      parameters:
+      - $ref: '#/components/parameters/SshKeyId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sshkeys/{id}/setdefault:
+    post:
+      operationId: setDefaultSshKey
+      tags:
+      - SSH Keys
+      summary: Set default SSH key
+      description: Mark an SSH key as the default key used for new instances.
+      parameters:
+      - $ref: '#/components/parameters/SshKeyId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sshkeys/{id}/delete:
+    post:
+      operationId: deleteSshKey
+      tags:
+      - SSH Keys
+      summary: Delete an SSH key
+      description: Delete an SSH key by its ID.
+      parameters:
+      - $ref: '#/components/parameters/SshKeyId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    AddSshKeyRequest:
+      type: object
+      required:
+      - name
+      - public_key
+      properties:
+        name:
+          type: string
+          description: The name of the SSH key.
+        public_key:
+          type: string
+          description: The SSH public key material.
+    SshKey:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        public_key:
+          type: string
+        default:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    CreateIdResponse:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
+    SshKeysResponse:
+      type: object
+      properties:
+        ssh_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/SshKey'
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    SshKeyId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the SSH key.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key issued from the Shadeform dashboard.
