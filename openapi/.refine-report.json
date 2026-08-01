@@ -1,0 +1,22 @@
+{
+  "provider": "shadeform",
+  "sources": [
+    "shadeform-instance-types-api-openapi.yml",
+    "shadeform-instances-api-openapi.yml",
+    "shadeform-ssh-keys-api-openapi.yml",
+    "shadeform-templates-api-openapi.yml",
+    "shadeform-volumes-api-openapi.yml"
+  ],
+  "outputs": [
+    "shadeform-instance-types-api-openapi.yml",
+    "shadeform-instances-api-openapi.yml",
+    "shadeform-ssh-keys-api-openapi.yml",
+    "shadeform-templates-api-openapi.yml",
+    "shadeform-volumes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

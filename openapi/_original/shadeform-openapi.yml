@@ -1,0 +1,1096 @@
+openapi: 3.0.1
+info:
+  title: Shadeform API
+  description: >-
+    Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and
+    manage GPU compute across many underlying clouds. The API standardizes instance
+    types, availability, and per-GPU-hour pricing across providers, and lets you
+    launch, inspect, restart, update, and delete instances, manage persistent
+    volumes and SSH keys, and save reusable launch templates. All requests are
+    authenticated with an X-API-KEY header.
+  termsOfService: https://www.shadeform.ai/terms
+  contact:
+    name: Shadeform Support
+    email: info@shadeform.ai
+  version: '1.0'
+servers:
+  - url: https://api.shadeform.ai/v1
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Instances
+    description: Launch and manage GPU instances across clouds.
+  - name: Instance Types
+    description: Query standardized instance types, availability, and pricing.
+  - name: Templates
+    description: Save and reuse launch templates.
+  - name: Volumes
+    description: Manage persistent storage volumes.
+  - name: SSH Keys
+    description: Manage SSH public keys for instance access.
+paths:
+  /instances:
+    get:
+      operationId: listInstances
+      tags:
+        - Instances
+      summary: List instances
+      description: >-
+        Retrieve all non-deleted instances for the account. Instances in the
+        'deleting' status are also returned.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstancesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /instances/types:
+    get:
+      operationId: listInstanceTypes
+      tags:
+        - Instance Types
+      summary: List instance types and availability
+      description: >-
+        Query standardized GPU instance types with configuration, hourly price in
+        cents, deployment type, boot-time estimates, and per-region availability.
+      parameters:
+        - name: cloud
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter the instance type results by cloud.
+        - name: region
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter the instance type results by region.
+        - name: num_gpus
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter the instance type results by the number of GPUs.
+        - name: gpu_type
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter the instance type results by GPU type.
+        - name: shade_instance_type
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by Shadeform's standardized instance type.
+        - name: available
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Filter the instance type results by availability.
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - price
+          description: Sort the results (e.g. by price).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceTypesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /instances/create:
+    post:
+      operationId: createInstance
+      tags:
+        - Instances
+      summary: Create an instance
+      description: >-
+        Launch a new GPU instance on the specified cloud, region, and standardized
+        instance type, optionally with an OS image, launch configuration (Docker or
+        script), volumes, SSH key, auto-delete and alert thresholds, tags, and
+        environment variables.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstanceRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateInstanceResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /instances/{id}/info:
+    get:
+      operationId: getInstance
+      tags:
+        - Instances
+      summary: Get instance info
+      description: Retrieve details for a single instance by its ID.
+      parameters:
+        - $ref: '#/components/parameters/InstanceId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /instances/{id}/restart:
+    post:
+      operationId: restartInstance
+      tags:
+        - Instances
+      summary: Restart an instance
+      description: Restart a running instance by its ID.
+      parameters:
+        - $ref: '#/components/parameters/InstanceId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /instances/{id}/update:
+    post:
+      operationId: updateInstance
+      tags:
+        - Instances
+      summary: Update an instance
+      description: >-
+        Update mutable properties of an instance, such as its name, tags,
+        auto-delete, or alert configuration.
+      parameters:
+        - $ref: '#/components/parameters/InstanceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInstanceRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /instances/{id}/delete:
+    post:
+      operationId: deleteInstance
+      tags:
+        - Instances
+      summary: Delete an instance
+      description: Delete an instance by its ID, releasing the underlying cloud resources.
+      parameters:
+        - $ref: '#/components/parameters/InstanceId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /templates:
+    get:
+      operationId: listTemplates
+      tags:
+        - Templates
+      summary: List templates
+      description: Retrieve all launch templates saved by the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /templates/featured:
+    get:
+      operationId: listFeaturedTemplates
+      tags:
+        - Templates
+      summary: List featured templates
+      description: Retrieve featured/public launch templates.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /templates/save:
+    post:
+      operationId: saveTemplate
+      tags:
+        - Templates
+      summary: Save a template
+      description: >-
+        Save a reusable launch template bundling launch configuration, auto-delete
+        and alert thresholds, volume mounts, networking, tags, and environment
+        variables.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateSaveRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIdResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /templates/{template_id}/info:
+    get:
+      operationId: getTemplate
+      tags:
+        - Templates
+      summary: Get template info
+      description: Retrieve details for a single template by its ID.
+      parameters:
+        - $ref: '#/components/parameters/TemplateId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /templates/{template_id}/update:
+    post:
+      operationId: updateTemplate
+      tags:
+        - Templates
+      summary: Update a template
+      description: Update the configuration of an existing template by its ID.
+      parameters:
+        - $ref: '#/components/parameters/TemplateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateSaveRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /templates/{template_id}/delete:
+    post:
+      operationId: deleteTemplate
+      tags:
+        - Templates
+      summary: Delete a template
+      description: Delete a template by its ID.
+      parameters:
+        - $ref: '#/components/parameters/TemplateId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /volumes:
+    get:
+      operationId: listVolumes
+      tags:
+        - Volumes
+      summary: List volumes
+      description: Retrieve all persistent storage volumes for the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /volumes/types:
+    get:
+      operationId: listVolumeTypes
+      tags:
+        - Volumes
+      summary: List volume types
+      description: Retrieve the supported persistent storage volume types by cloud and region.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeTypesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /volumes/create:
+    post:
+      operationId: createVolume
+      tags:
+        - Volumes
+      summary: Create a volume
+      description: Create a persistent storage volume of a given size on a cloud and region.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVolumeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIdResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /volumes/{id}/info:
+    get:
+      operationId: getVolume
+      tags:
+        - Volumes
+      summary: Get volume info
+      description: Retrieve details for a single volume by its ID.
+      parameters:
+        - $ref: '#/components/parameters/VolumeId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /volumes/{id}/delete:
+    post:
+      operationId: deleteVolume
+      tags:
+        - Volumes
+      summary: Delete a volume
+      description: Delete a persistent storage volume by its ID.
+      parameters:
+        - $ref: '#/components/parameters/VolumeId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sshkeys:
+    get:
+      operationId: listSshKeys
+      tags:
+        - SSH Keys
+      summary: List SSH keys
+      description: Retrieve all SSH public keys registered on the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeysResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sshkeys/add:
+    post:
+      operationId: addSshKey
+      tags:
+        - SSH Keys
+      summary: Add an SSH key
+      description: Register a new SSH public key for use when launching instances.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSshKeyRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIdResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sshkeys/{id}/info:
+    get:
+      operationId: getSshKey
+      tags:
+        - SSH Keys
+      summary: Get SSH key info
+      description: Retrieve details for a single SSH key by its ID.
+      parameters:
+        - $ref: '#/components/parameters/SshKeyId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sshkeys/{id}/setdefault:
+    post:
+      operationId: setDefaultSshKey
+      tags:
+        - SSH Keys
+      summary: Set default SSH key
+      description: Mark an SSH key as the default key used for new instances.
+      parameters:
+        - $ref: '#/components/parameters/SshKeyId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sshkeys/{id}/delete:
+    post:
+      operationId: deleteSshKey
+      tags:
+        - SSH Keys
+      summary: Delete an SSH key
+      description: Delete an SSH key by its ID.
+      parameters:
+        - $ref: '#/components/parameters/SshKeyId'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key issued from the Shadeform dashboard.
+  parameters:
+    InstanceId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the instance.
+    TemplateId:
+      name: template_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the template.
+    VolumeId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the volume.
+    SshKeyId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the SSH key.
+  responses:
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Configuration:
+      type: object
+      description: Hardware and OS configuration of an instance type or instance.
+      properties:
+        memory_in_gb:
+          type: integer
+        storage_in_gb:
+          type: integer
+        vcpus:
+          type: integer
+        num_gpus:
+          type: integer
+        gpu_type:
+          type: string
+        vram_per_gpu_in_gb:
+          type: integer
+        interconnect:
+          type: string
+        os_options:
+          type: array
+          items:
+            type: string
+    Availability:
+      type: object
+      properties:
+        region:
+          type: string
+        available:
+          type: boolean
+        display_name:
+          type: string
+    BootTime:
+      type: object
+      properties:
+        min_boot_in_sec:
+          type: integer
+        max_boot_in_sec:
+          type: integer
+    InstanceType:
+      type: object
+      properties:
+        cloud:
+          type: string
+          description: The underlying cloud provider.
+          example: hyperstack
+        shade_instance_type:
+          type: string
+          description: Shadeform's standardized instance type.
+          example: A100
+        cloud_instance_type:
+          type: string
+          description: Provider-specific instance name.
+        configuration:
+          $ref: '#/components/schemas/Configuration'
+        hourly_price:
+          type: integer
+          description: The hourly price of the instance in cents.
+        deployment_type:
+          type: string
+          enum:
+            - vm
+            - container
+            - baremetal
+        availability:
+          type: array
+          items:
+            $ref: '#/components/schemas/Availability'
+        boot_time:
+          $ref: '#/components/schemas/BootTime'
+    InstanceTypesResponse:
+      type: object
+      properties:
+        instance_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstanceType'
+    Env:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    PortMapping:
+      type: object
+      properties:
+        host_port:
+          type: integer
+        container_port:
+          type: integer
+    VolumeMount:
+      type: object
+      properties:
+        host_path:
+          type: string
+        container_path:
+          type: string
+    RegistryCredentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    DockerConfiguration:
+      type: object
+      required:
+        - image
+      properties:
+        image:
+          type: string
+          description: Docker image URI.
+        args:
+          type: string
+        shared_memory_in_gb:
+          type: integer
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+        port_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortMapping'
+        volume_mounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeMount'
+        registry_credentials:
+          $ref: '#/components/schemas/RegistryCredentials'
+    ScriptConfiguration:
+      type: object
+      required:
+        - base64_script
+      properties:
+        base64_script:
+          type: string
+          description: Base64-encoded startup script.
+    LaunchConfiguration:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - docker
+            - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
+    AutoDelete:
+      type: object
+      description: Triggers that automatically delete the instance.
+      properties:
+        delete_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    CreateInstanceRequest:
+      type: object
+      required:
+        - cloud
+        - region
+        - shade_instance_type
+        - shade_cloud
+        - name
+      properties:
+        cloud:
+          type: string
+          description: The cloud provider to launch on.
+          example: hyperstack
+        region:
+          type: string
+          example: canada-1
+        shade_instance_type:
+          type: string
+          example: A6000
+        shade_cloud:
+          type: boolean
+          description: Whether to launch through Shade Cloud.
+        name:
+          type: string
+        os:
+          type: string
+          example: ubuntu22.04_cuda12.2_shade_os
+        template_id:
+          type: string
+          format: uuid
+        launch_configuration:
+          $ref: '#/components/schemas/LaunchConfiguration'
+        volume_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        ssh_key_id:
+          type: string
+          format: uuid
+        auto_delete:
+          $ref: '#/components/schemas/AutoDelete'
+        alert:
+          $ref: '#/components/schemas/Alert'
+        tags:
+          type: array
+          items:
+            type: string
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+    CreateInstanceResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created instance.
+    UpdateInstanceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        auto_delete:
+          $ref: '#/components/schemas/AutoDelete'
+        alert:
+          $ref: '#/components/schemas/Alert'
+    Instance:
+      type: object
+      required:
+        - id
+        - cloud
+        - region
+        - shade_instance_type
+        - cloud_instance_type
+        - cloud_assigned_id
+        - shade_cloud
+        - name
+        - configuration
+        - ip
+        - ssh_user
+        - ssh_port
+        - status
+        - cost_estimate
+        - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+        cloud:
+          type: string
+        region:
+          type: string
+        shade_instance_type:
+          type: string
+        cloud_instance_type:
+          type: string
+        cloud_assigned_id:
+          type: string
+        shade_cloud:
+          type: boolean
+        name:
+          type: string
+        configuration:
+          $ref: '#/components/schemas/Configuration'
+        ip:
+          type: string
+          description: Public IP address or DNS name.
+        ssh_user:
+          type: string
+        ssh_port:
+          type: integer
+        status:
+          type: string
+          enum:
+            - creating
+            - pending_provider
+            - pending
+            - active
+            - error
+            - deleting
+            - deleted
+        status_details:
+          type: string
+        cost_estimate:
+          type: string
+        hourly_price:
+          type: integer
+          description: Hourly price in cents.
+        launch_configuration:
+          $ref: '#/components/schemas/LaunchConfiguration'
+        tags:
+          type: array
+          items:
+            type: string
+        port_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortMapping'
+        created_at:
+          type: string
+          format: date-time
+        active_at:
+          type: string
+          format: date-time
+        deleted_at:
+          type: string
+          format: date-time
+        boot_time:
+          $ref: '#/components/schemas/BootTime'
+    InstancesResponse:
+      type: object
+      properties:
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+    Networking:
+      type: object
+      description: Firewall and network rules for a template.
+      properties:
+        firewall_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              port:
+                type: integer
+              protocol:
+                type: string
+              source:
+                type: string
+    TemplateSaveRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        public:
+          type: boolean
+        launch_configuration:
+          $ref: '#/components/schemas/LaunchConfiguration'
+        auto_delete:
+          $ref: '#/components/schemas/AutoDelete'
+        alert:
+          $ref: '#/components/schemas/Alert'
+        volume_mount:
+          $ref: '#/components/schemas/VolumeMount'
+        networking:
+          $ref: '#/components/schemas/Networking'
+        tags:
+          type: array
+          items:
+            type: string
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+    Template:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            created_at:
+              type: string
+              format: date-time
+        - $ref: '#/components/schemas/TemplateSaveRequest'
+    TemplatesResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+    CreateVolumeRequest:
+      type: object
+      required:
+        - cloud
+        - region
+        - size_in_gb
+        - name
+      properties:
+        cloud:
+          type: string
+          example: hyperstack
+        region:
+          type: string
+          example: canada-1
+        size_in_gb:
+          type: integer
+          example: 100
+        name:
+          type: string
+          example: My storage volume
+    Volume:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        cloud:
+          type: string
+        region:
+          type: string
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    VolumesResponse:
+      type: object
+      properties:
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volume'
+    VolumeType:
+      type: object
+      properties:
+        cloud:
+          type: string
+        region:
+          type: string
+        min_size_in_gb:
+          type: integer
+        max_size_in_gb:
+          type: integer
+        hourly_price:
+          type: integer
+          description: Hourly price per GB in cents.
+    VolumeTypesResponse:
+      type: object
+      properties:
+        volume_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeType'
+    AddSshKeyRequest:
+      type: object
+      required:
+        - name
+        - public_key
+      properties:
+        name:
+          type: string
+          description: The name of the SSH key.
+        public_key:
+          type: string
+          description: The SSH public key material.
+    SshKey:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        public_key:
+          type: string
+        default:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    SshKeysResponse:
+      type: object
+      properties:
+        ssh_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/SshKey'
+    CreateIdResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
