@@ -31,7 +31,7 @@ tags:
 - AI
 created: '2026-06-21'
 modified: '2026-06-21'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: shadeform:shadeform-instance-types-api
   name: Shadeform Instance Types API
