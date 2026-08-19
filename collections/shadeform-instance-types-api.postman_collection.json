@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "8a24e4a9-e20c-4e0d-9389-6c6b3bf86f19",
+      "name": "Instance Types",
+      "description": {
+        "content": "Query standardized instance types, availability, and pricing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3c1a5fa-173d-42b0-9a02-44b5e876276f",
+          "name": "List instance types and availability",
+          "request": {
+            "name": "List instance types and availability",
+            "description": {
+              "content": "Query standardized GPU instance types with configuration, hourly price in cents, deployment type, boot-time estimates, and per-region availability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cloud",
+                  "value": "<string>",
+                  "description": "Filter the instance type results by cloud."
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Filter the instance type results by region."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_gpus",
+                  "value": "<string>",
+                  "description": "Filter the instance type results by the number of GPUs."
+                },
+                {
+                  "disabled": false,
+                  "key": "gpu_type",
+                  "value": "<string>",
+                  "description": "Filter the instance type results by GPU type."
+                },
+                {
+                  "disabled": false,
+                  "key": "shade_instance_type",
+                  "value": "<string>",
+                  "description": "Filter by Shadeform's standardized instance type."
+                },
+                {
+                  "disabled": false,
+                  "key": "available",
+                  "value": "<boolean>",
+                  "description": "Filter the instance type results by availability."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort the results (e.g. by price)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebb3e876-f019-425b-94a9-1d3428b1130e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cloud",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_gpus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gpu_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shade_instance_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "available",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instance_types\": [\n    {\n      \"cloud\": \"hyperstack\",\n      \"shade_instance_type\": \"A100\",\n      \"cloud_instance_type\": \"string\",\n      \"configuration\": {\n        \"memory_in_gb\": 8022,\n        \"storage_in_gb\": 8005,\n        \"vcpus\": 5983,\n        \"num_gpus\": 7384,\n        \"gpu_type\": \"string\",\n        \"vram_per_gpu_in_gb\": 2315,\n        \"interconnect\": \"string\",\n        \"os_options\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"hourly_price\": 4132,\n      \"deployment_type\": \"container\",\n      \"availability\": [\n        {\n          \"region\": \"string\",\n          \"available\": true,\n          \"display_name\": \"string\"\n        },\n        {\n          \"region\": \"string\",\n          \"available\": true,\n          \"display_name\": \"string\"\n        }\n      ],\n      \"boot_time\": {\n        \"min_boot_in_sec\": 1781,\n        \"max_boot_in_sec\": 4084\n      }\n    },\n    {\n      \"cloud\": \"hyperstack\",\n      \"shade_instance_type\": \"A100\",\n      \"cloud_instance_type\": \"string\",\n      \"configuration\": {\n        \"memory_in_gb\": 8012,\n        \"storage_in_gb\": 3249,\n        \"vcpus\": 7197,\n        \"num_gpus\": 2711,\n        \"gpu_type\": \"string\",\n        \"vram_per_gpu_in_gb\": 2396,\n        \"interconnect\": \"string\",\n        \"os_options\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"hourly_price\": 2890,\n      \"deployment_type\": \"container\",\n      \"availability\": [\n        {\n          \"region\": \"string\",\n          \"available\": true,\n          \"display_name\": \"string\"\n        },\n        {\n          \"region\": \"string\",\n          \"available\": true,\n          \"display_name\": \"string\"\n        }\n      ],\n      \"boot_time\": {\n        \"min_boot_in_sec\": 2691,\n        \"max_boot_in_sec\": 6545\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0149dc25-5ca1-429b-9629-883593683411",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cloud",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_gpus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gpu_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shade_instance_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "available",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shadeform.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "69fd7704-197d-416f-878f-c3d5605125b4",
+    "name": "Shadeform Instance Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.\n\nContact Support:\n Name: Shadeform Support\n Email: info@shadeform.ai",
+      "type": "text/plain"
+    }
+  }
+}

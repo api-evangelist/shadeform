@@ -1,0 +1,1201 @@
+{
+  "item": [
+    {
+      "id": "2d0f6e55-aebc-42c1-a755-c2a2f9cb1644",
+      "name": "Templates",
+      "description": {
+        "content": "Save and reuse launch templates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb2fd69d-e3f4-4f87-b6ed-69a66a26d08f",
+          "name": "List templates",
+          "request": {
+            "name": "List templates",
+            "description": {
+              "content": "Retrieve all launch templates saved by the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c66fa915-b2f9-4411-a58f-6f304f33eac0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"templates\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"a966c655-ab4b-2024-40cb-7b2eb5308804\",\n      \"created_at\": \"1984-12-18T08:33:55.740Z\",\n      \"description\": \"string\",\n      \"public\": true,\n      \"launch_configuration\": {\n        \"type\": \"docker\",\n        \"docker_configuration\": {\n          \"image\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"args\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"shared_memory_in_gb\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"envs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"port_mappings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume_mounts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registry_credentials\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"script_configuration\": {\n          \"base64_script\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"auto_delete\": {\n        \"delete_at\": \"2004-07-08T18:33:46.858Z\",\n        \"spend_limit_in_cents\": 5731\n      },\n      \"alert\": {\n        \"alert_at\": \"1952-12-28T10:54:28.996Z\",\n        \"spend_limit_in_cents\": 8023,\n        \"email\": \"string\"\n      },\n      \"volume_mount\": {\n        \"host_path\": \"string\",\n        \"container_path\": \"string\"\n      },\n      \"networking\": {\n        \"firewall_rules\": [\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"envs\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"cf21fa59-03ab-30b7-692b-e320aa7a7bed\",\n      \"created_at\": \"1946-11-13T04:03:35.379Z\",\n      \"description\": \"string\",\n      \"public\": true,\n      \"launch_configuration\": {\n        \"type\": \"script\",\n        \"docker_configuration\": {\n          \"image\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"args\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"shared_memory_in_gb\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"envs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"port_mappings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume_mounts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registry_credentials\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"script_configuration\": {\n          \"base64_script\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"auto_delete\": {\n        \"delete_at\": \"2019-08-02T20:23:55.459Z\",\n        \"spend_limit_in_cents\": 4443\n      },\n      \"alert\": {\n        \"alert_at\": \"1994-09-26T00:44:48.206Z\",\n        \"spend_limit_in_cents\": 5218,\n        \"email\": \"string\"\n      },\n      \"volume_mount\": {\n        \"host_path\": \"string\",\n        \"container_path\": \"string\"\n      },\n      \"networking\": {\n        \"firewall_rules\": [\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"envs\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4cd95b8-aa82-4952-924c-bc8a46d521fc",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e6cb16f-14e0-4ac2-beff-f471cc9e6eed",
+          "name": "List featured templates",
+          "request": {
+            "name": "List featured templates",
+            "description": {
+              "content": "Retrieve featured/public launch templates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "featured"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5016138-f974-458b-859d-3d3043d21313",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "featured"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"templates\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"ad2cbd52-e145-1e98-95ce-8cd5408d6da0\",\n      \"created_at\": \"2008-01-03T19:44:19.573Z\",\n      \"description\": \"string\",\n      \"public\": true,\n      \"launch_configuration\": {\n        \"type\": \"docker\",\n        \"docker_configuration\": {\n          \"image\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"args\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"shared_memory_in_gb\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"envs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"port_mappings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume_mounts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registry_credentials\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"script_configuration\": {\n          \"base64_script\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"auto_delete\": {\n        \"delete_at\": \"2021-08-10T08:23:00.347Z\",\n        \"spend_limit_in_cents\": 2478\n      },\n      \"alert\": {\n        \"alert_at\": \"1977-04-29T16:03:18.258Z\",\n        \"spend_limit_in_cents\": 5132,\n        \"email\": \"string\"\n      },\n      \"volume_mount\": {\n        \"host_path\": \"string\",\n        \"container_path\": \"string\"\n      },\n      \"networking\": {\n        \"firewall_rules\": [\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"envs\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"6bcbe567-bfb9-811c-d7e5-faa4eb0f6a63\",\n      \"created_at\": \"2007-03-06T18:15:47.591Z\",\n      \"description\": \"string\",\n      \"public\": true,\n      \"launch_configuration\": {\n        \"type\": \"docker\",\n        \"docker_configuration\": {\n          \"image\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"args\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"shared_memory_in_gb\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"envs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"port_mappings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume_mounts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registry_credentials\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"script_configuration\": {\n          \"base64_script\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"auto_delete\": {\n        \"delete_at\": \"1997-11-06T12:50:42.569Z\",\n        \"spend_limit_in_cents\": 4276\n      },\n      \"alert\": {\n        \"alert_at\": \"2013-02-13T00:14:04.552Z\",\n        \"spend_limit_in_cents\": 3553,\n        \"email\": \"string\"\n      },\n      \"volume_mount\": {\n        \"host_path\": \"string\",\n        \"container_path\": \"string\"\n      },\n      \"networking\": {\n        \"firewall_rules\": [\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"port\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"protocol\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"envs\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "becb2b37-780f-44cf-8149-d38e068b5008",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "featured"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3fc0c28-5211-41b3-b7b1-db2bfc9e84f9",
+          "name": "Save a template",
+          "request": {
+            "name": "Save a template",
+            "description": {
+              "content": "Save a reusable launch template bundling launch configuration, auto-delete and alert thresholds, volume mounts, networking, tags, and environment variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "save"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fbeb21d-b9da-49ab-abce-1ae5e7c2f3fb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "save"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"88af0913-bd02-5ca7-13b0-1e9901f6f7be\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37031d33-3a2f-4b44-95a4-e17b6fbfa4c5",
+              "name": "The request was malformed or failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "save"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e8ee86-6004-4825-8708-ea3de8f93c53",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "save"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47ea2472-f937-4aa2-8763-280343eff48c",
+          "name": "Get template info",
+          "request": {
+            "name": "Get template info",
+            "description": {
+              "content": "Retrieve details for a single template by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "template_id",
+                  "description": "(Required) The unique identifier of the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2c7799e-65e5-4d95-b3d1-817c962a7ff4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"0efc8b58-16c1-6fef-c715-f04f9641fac3\",\n  \"created_at\": \"1956-03-27T23:37:27.626Z\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"container_port\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"host_port\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"container_port\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"container_path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"host_path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"container_path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6913c97-4f7a-4ae3-9867-dd3c60bae782",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b85e76e5-7b32-4c32-81f9-582bc928bd59",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cacaa1c-5504-41b9-a12c-059dd29e9cca",
+          "name": "Update a template",
+          "request": {
+            "name": "Update a template",
+            "description": {
+              "content": "Update the configuration of an existing template by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "template_id",
+                  "description": "(Required) The unique identifier of the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9935b731-39b5-4b30-9a0f-7b2621cb324e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8df4bf14-cd91-46af-bde0-b5af3a97d4b1",
+              "name": "The request was malformed or failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10d2069a-cf1d-4362-81c0-178304ff16f7",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94a0de41-51ed-422d-80e3-996c7d0558e3",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"volume_mount\": {\n    \"host_path\": \"<string>\",\n    \"container_path\": \"<string>\"\n  },\n  \"networking\": {\n    \"firewall_rules\": [\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      },\n      {\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\"\n      }\n    ]\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b284f3bb-e144-454d-8aaa-b447a8cebd73",
+          "name": "Delete a template",
+          "request": {
+            "name": "Delete a template",
+            "description": {
+              "content": "Delete a template by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "template_id",
+                  "description": "(Required) The unique identifier of the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9a1f533-2be3-430e-a18e-0424bac4b6c6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9611b23-36ad-4423-ac65-3b52e85d44ec",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4371d546-7894-4b87-b420-898bb8caf1ce",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "template_id",
+                      "description": "(Required) The unique identifier of the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shadeform.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "872547e1-13af-4be8-934b-0531f87f0ba9",
+    "name": "Shadeform Instance Types Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.\n\nContact Support:\n Name: Shadeform Support\n Email: info@shadeform.ai",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shadeform Instance Types Volumes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Volumes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/volumes"
+          },
+          "docs": "Retrieve all persistent storage volumes for the account."
+        },
+        {
+          "info": {
+            "name": "List volume types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/volumes/types"
+          },
+          "docs": "Retrieve the supported persistent storage volume types by cloud and region."
+        },
+        {
+          "info": {
+            "name": "Create a volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/volumes/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a persistent storage volume of a given size on a cloud and region."
+        },
+        {
+          "info": {
+            "name": "Get volume info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/volumes/:id/info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the volume."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a single volume by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete a volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/volumes/:id/delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the volume."
+              }
+            ]
+          },
+          "docs": "Delete a persistent storage volume by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

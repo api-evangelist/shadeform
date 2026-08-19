@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shadeform Instance Types Instances API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/instances"
+          },
+          "docs": "Retrieve all non-deleted instances for the account. Instances in the 'deleting' status are also returned."
+        },
+        {
+          "info": {
+            "name": "Create an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launch a new GPU instance on the specified cloud, region, and standardized instance type, optionally with an OS image, launch configuration (Docker or script), volumes, SSH key, auto-delete and alert thresholds, tags, and environment variables."
+        },
+        {
+          "info": {
+            "name": "Get instance info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/instances/:id/info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the instance."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a single instance by its ID."
+        },
+        {
+          "info": {
+            "name": "Restart an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/:id/restart",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the instance."
+              }
+            ]
+          },
+          "docs": "Restart a running instance by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/:id/update",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the instance."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mutable properties of an instance, such as its name, tags, auto-delete, or alert configuration."
+        },
+        {
+          "info": {
+            "name": "Delete an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/instances/:id/delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the instance."
+              }
+            ]
+          },
+          "docs": "Delete an instance by its ID, releasing the underlying cloud resources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

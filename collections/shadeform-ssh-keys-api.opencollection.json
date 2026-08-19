@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shadeform Instance Types SSH Keys API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSH Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SSH keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/sshkeys"
+          },
+          "docs": "Retrieve all SSH public keys registered on the account."
+        },
+        {
+          "info": {
+            "name": "Add an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/sshkeys/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new SSH public key for use when launching instances."
+        },
+        {
+          "info": {
+            "name": "Get SSH key info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/sshkeys/:id/info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SSH key."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a single SSH key by its ID."
+        },
+        {
+          "info": {
+            "name": "Set default SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/sshkeys/:id/setdefault",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SSH key."
+              }
+            ]
+          },
+          "docs": "Mark an SSH key as the default key used for new instances."
+        },
+        {
+          "info": {
+            "name": "Delete an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shadeform.ai/v1/sshkeys/:id/delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SSH key."
+              }
+            ]
+          },
+          "docs": "Delete an SSH key by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

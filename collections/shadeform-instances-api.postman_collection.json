@@ -1,0 +1,1277 @@
+{
+  "item": [
+    {
+      "id": "13e5816b-2501-4d9d-9f7e-244fe388f33a",
+      "name": "Instances",
+      "description": {
+        "content": "Launch and manage GPU instances across clouds.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9bfbdcb-4173-443b-9ab0-bacda2de40bc",
+          "name": "List instances",
+          "request": {
+            "name": "List instances",
+            "description": {
+              "content": "Retrieve all non-deleted instances for the account. Instances in the 'deleting' status are also returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fe2b8ec-4ff2-47ee-8240-3096688f0f77",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instances\": [\n    {\n      \"id\": \"32473205-9bbb-2db6-26f7-ab35b503c7e2\",\n      \"cloud\": \"string\",\n      \"region\": \"string\",\n      \"shade_instance_type\": \"string\",\n      \"cloud_instance_type\": \"string\",\n      \"cloud_assigned_id\": \"string\",\n      \"shade_cloud\": true,\n      \"name\": \"string\",\n      \"configuration\": {\n        \"memory_in_gb\": 6468,\n        \"storage_in_gb\": 5310,\n        \"vcpus\": 928,\n        \"num_gpus\": 4519,\n        \"gpu_type\": \"string\",\n        \"vram_per_gpu_in_gb\": 567,\n        \"interconnect\": \"string\",\n        \"os_options\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"ip\": \"string\",\n      \"ssh_user\": \"string\",\n      \"ssh_port\": 1801,\n      \"status\": \"error\",\n      \"cost_estimate\": \"string\",\n      \"created_at\": \"2010-04-30T19:53:24.234Z\",\n      \"status_details\": \"string\",\n      \"hourly_price\": 5476,\n      \"launch_configuration\": {\n        \"type\": \"script\",\n        \"docker_configuration\": {\n          \"image\": \"string\",\n          \"args\": \"string\",\n          \"shared_memory_in_gb\": 3472,\n          \"envs\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"port_mappings\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"volume_mounts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"registry_credentials\": {\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"password\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"script_configuration\": {\n          \"base64_script\": \"string\"\n        }\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": 5144,\n          \"container_port\": 3358\n        },\n        {\n          \"host_port\": 6030,\n          \"container_port\": 4563\n        }\n      ],\n      \"active_at\": \"1953-03-01T16:14:45.018Z\",\n      \"deleted_at\": \"2015-07-19T04:07:27.463Z\",\n      \"boot_time\": {\n        \"min_boot_in_sec\": 2719,\n        \"max_boot_in_sec\": 7848\n      }\n    },\n    {\n      \"id\": \"718b24ef-89c4-25b2-519d-d42c0283d253\",\n      \"cloud\": \"string\",\n      \"region\": \"string\",\n      \"shade_instance_type\": \"string\",\n      \"cloud_instance_type\": \"string\",\n      \"cloud_assigned_id\": \"string\",\n      \"shade_cloud\": true,\n      \"name\": \"string\",\n      \"configuration\": {\n        \"memory_in_gb\": 3208,\n        \"storage_in_gb\": 9834,\n        \"vcpus\": 9130,\n        \"num_gpus\": 258,\n        \"gpu_type\": \"string\",\n        \"vram_per_gpu_in_gb\": 327,\n        \"interconnect\": \"string\",\n        \"os_options\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"ip\": \"string\",\n      \"ssh_user\": \"string\",\n      \"ssh_port\": 3240,\n      \"status\": \"pending_provider\",\n      \"cost_estimate\": \"string\",\n      \"created_at\": \"1990-11-03T01:06:57.943Z\",\n      \"status_details\": \"string\",\n      \"hourly_price\": 2985,\n      \"launch_configuration\": {\n        \"type\": \"script\",\n        \"docker_configuration\": {\n          \"image\": \"string\",\n          \"args\": \"string\",\n          \"shared_memory_in_gb\": 9650,\n          \"envs\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"port_mappings\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"volume_mounts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"registry_credentials\": {\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"password\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"script_configuration\": {\n          \"base64_script\": \"string\"\n        }\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": 5488,\n          \"container_port\": 2851\n        },\n        {\n          \"host_port\": 1773,\n          \"container_port\": 5748\n        }\n      ],\n      \"active_at\": \"1972-10-06T09:00:56.752Z\",\n      \"deleted_at\": \"2005-08-15T02:40:25.030Z\",\n      \"boot_time\": {\n        \"min_boot_in_sec\": 1272,\n        \"max_boot_in_sec\": 1235\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "140acc36-5aec-45e0-8baf-d1466e40f765",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1488f4f-7b66-4b7a-beec-685692b355f5",
+          "name": "Create an instance",
+          "request": {
+            "name": "Create an instance",
+            "description": {
+              "content": "Launch a new GPU instance on the specified cloud, region, and standardized instance type, optionally with an OS image, launch configuration (Docker or script), volumes, SSH key, auto-delete and alert thresholds, tags, and environment variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"shade_instance_type\": \"<string>\",\n  \"shade_cloud\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"os\": \"<string>\",\n  \"template_id\": \"<uuid>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"volume_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"ssh_key_id\": \"<uuid>\",\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41df946a-ad53-4194-a6a7-8f2c9f27dcb2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloud\": \"hyperstack\",\n  \"region\": \"canada-1\",\n  \"shade_instance_type\": \"A6000\",\n  \"shade_cloud\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"os\": \"ubuntu22.04_cuda12.2_shade_os\",\n  \"template_id\": \"<uuid>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"volume_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"ssh_key_id\": \"<uuid>\",\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0d750336-d056-4bb4-9b90-7531605a9bad\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60c9b209-c9b6-4dfd-b363-628b9827cf8f",
+              "name": "The request was malformed or failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloud\": \"hyperstack\",\n  \"region\": \"canada-1\",\n  \"shade_instance_type\": \"A6000\",\n  \"shade_cloud\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"os\": \"ubuntu22.04_cuda12.2_shade_os\",\n  \"template_id\": \"<uuid>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"volume_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"ssh_key_id\": \"<uuid>\",\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eba26197-6f6e-4ea8-a630-d6a95715c2af",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloud\": \"hyperstack\",\n  \"region\": \"canada-1\",\n  \"shade_instance_type\": \"A6000\",\n  \"shade_cloud\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"os\": \"ubuntu22.04_cuda12.2_shade_os\",\n  \"template_id\": \"<uuid>\",\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"volume_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"ssh_key_id\": \"<uuid>\",\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"envs\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1d79350-8824-43d2-967a-f64ac1dc2d61",
+          "name": "Get instance info",
+          "request": {
+            "name": "Get instance info",
+            "description": {
+              "content": "Retrieve details for a single instance by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "214225b1-b4c3-449f-abab-a8e31248418a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ce370d72-32a3-57ef-5c72-bdb1efcfada4\",\n  \"cloud\": \"string\",\n  \"region\": \"string\",\n  \"shade_instance_type\": \"string\",\n  \"cloud_instance_type\": \"string\",\n  \"cloud_assigned_id\": \"string\",\n  \"shade_cloud\": true,\n  \"name\": \"string\",\n  \"configuration\": {\n    \"memory_in_gb\": 5440,\n    \"storage_in_gb\": 7773,\n    \"vcpus\": 8987,\n    \"num_gpus\": 4448,\n    \"gpu_type\": \"string\",\n    \"vram_per_gpu_in_gb\": 9254,\n    \"interconnect\": \"string\",\n    \"os_options\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"ip\": \"string\",\n  \"ssh_user\": \"string\",\n  \"ssh_port\": 1223,\n  \"status\": \"deleting\",\n  \"cost_estimate\": \"string\",\n  \"created_at\": \"2009-08-25T19:40:26.272Z\",\n  \"status_details\": \"string\",\n  \"hourly_price\": 4285,\n  \"launch_configuration\": {\n    \"type\": \"<string>\",\n    \"docker_configuration\": {\n      \"image\": \"<string>\",\n      \"args\": \"<string>\",\n      \"shared_memory_in_gb\": \"<integer>\",\n      \"envs\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"port_mappings\": [\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        },\n        {\n          \"host_port\": \"<integer>\",\n          \"container_port\": \"<integer>\"\n        }\n      ],\n      \"volume_mounts\": [\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        },\n        {\n          \"host_path\": \"<string>\",\n          \"container_path\": \"<string>\"\n        }\n      ],\n      \"registry_credentials\": {\n        \"username\": \"<string>\",\n        \"password\": \"<string>\"\n      }\n    },\n    \"script_configuration\": {\n      \"base64_script\": \"<string>\"\n    }\n  },\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"port_mappings\": [\n    {\n      \"host_port\": \"<integer>\",\n      \"container_port\": \"<integer>\"\n    },\n    {\n      \"host_port\": \"<integer>\",\n      \"container_port\": \"<integer>\"\n    }\n  ],\n  \"active_at\": \"2018-11-04T19:15:55.398Z\",\n  \"deleted_at\": \"1966-07-24T18:28:51.332Z\",\n  \"boot_time\": {\n    \"min_boot_in_sec\": 2815,\n    \"max_boot_in_sec\": 1840\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baf039da-f7dd-4f73-8e43-f9df3f6e5340",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7b2b5ed-de1d-487e-b236-953a35b48b8d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42f93925-36fd-4352-b6cd-ca38359559ee",
+          "name": "Restart an instance",
+          "request": {
+            "name": "Restart an instance",
+            "description": {
+              "content": "Restart a running instance by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "restart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "788bd637-8014-46b8-8283-8d74f2df1479",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "466af2e0-b02f-4e56-8b52-44c356bd7db7",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8698e91d-ddd5-4962-b6ba-4842ae81b44e",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32bd0963-c64d-4adc-9bd3-7af24e8b6cec",
+          "name": "Update an instance",
+          "request": {
+            "name": "Update an instance",
+            "description": {
+              "content": "Update mutable properties of an instance, such as its name, tags, auto-delete, or alert configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f6b1b48-c6cf-4bf5-92c9-af328c6cb6cc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e10c20a-3065-4575-bf1a-f3c2e8754099",
+              "name": "The request was malformed or failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f93c9f42-f0c0-4f49-a8a9-e4a8fc912aa5",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb8d3711-f6e9-4510-96c5-8df15ab38609",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auto_delete\": {\n    \"delete_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\"\n  },\n  \"alert\": {\n    \"alert_at\": \"<dateTime>\",\n    \"spend_limit_in_cents\": \"<integer>\",\n    \"email\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a68e9bf6-6206-40bc-82e2-6a7550f46727",
+          "name": "Delete an instance",
+          "request": {
+            "name": "Delete an instance",
+            "description": {
+              "content": "Delete an instance by its ID, releasing the underlying cloud resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8dc67486-b799-4a97-b64f-9e92dfc9a7e0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b57da6c7-f173-4141-9f29-cc67fd249cab",
+              "name": "Missing or invalid X-API-KEY.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac59d0cc-f809-40c9-9a1a-26adaf1603e7",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shadeform.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "098a8817-808c-4599-ad29-4d5982e97c62",
+    "name": "Shadeform Instance Types Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.\n\nContact Support:\n Name: Shadeform Support\n Email: info@shadeform.ai",
+      "type": "text/plain"
+    }
+  }
+}

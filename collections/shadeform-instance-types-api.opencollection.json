@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shadeform Instance Types API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instance Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instance types and availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shadeform.ai/v1/instances/types",
+            "params": [
+              {
+                "name": "cloud",
+                "value": "",
+                "type": "query",
+                "description": "Filter the instance type results by cloud."
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Filter the instance type results by region."
+              },
+              {
+                "name": "num_gpus",
+                "value": "",
+                "type": "query",
+                "description": "Filter the instance type results by the number of GPUs."
+              },
+              {
+                "name": "gpu_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter the instance type results by GPU type."
+              },
+              {
+                "name": "shade_instance_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Shadeform's standardized instance type."
+              },
+              {
+                "name": "available",
+                "value": "",
+                "type": "query",
+                "description": "Filter the instance type results by availability."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort the results (e.g. by price)."
+              }
+            ]
+          },
+          "docs": "Query standardized GPU instance types with configuration, hourly price in cents, deployment type, boot-time estimates, and per-region availability."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
