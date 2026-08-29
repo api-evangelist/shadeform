@@ -8,6 +8,18 @@ description: Shadeform is a GPU cloud marketplace that exposes a single REST API
   inspect, restart, and delete instances, attach volumes and SSH keys, and reuse
   saved launch templates across providers such as Lambda, Nebius, Crusoe, and
   Hyperstack.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
