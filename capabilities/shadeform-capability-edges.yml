@@ -1,0 +1,35 @@
+slug: shadeform
+provider: Shadeform
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Electrical Components & Equipment
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Instances
+  spec_file: shadeform-instances-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /instances/create createInstance; POST /instances/{id}/restart restartInstance; POST
+    /instances/{id}/delete deleteInstance
+  reason: Launch, inspect, restart and delete of GPU compute instances across underlying clouds is squarely
+    cloud/compute infrastructure management.
+- tag: Volumes
+  spec_file: shadeform-volumes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /volumes/create createVolume; GET /volumes/types listVolumeTypes; "manage persistent
+    volumes"
+  reason: Creation and lifecycle of persistent storage volumes attached to GPU instances is compute/storage
+    infrastructure management.

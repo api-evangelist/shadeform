@@ -213,6 +213,9 @@ apis:
   - type: APIReference
     url: https://docs.shadeform.ai/api-reference/sshkeys/sshkeys
 common:
+- type: CapabilityMap
+  url: capabilities/shadeform-capability-edges.yml
+  name: Shadeform Business Capability Map
 - type: AgenticAccess
   url: agentic-access/shadeform-agentic-access.yml
 - type: DomainSecurity
