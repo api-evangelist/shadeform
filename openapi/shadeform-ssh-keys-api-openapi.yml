@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Shadeform Instance Types SSH Keys API
+  title: Shadeform SSH Keys API
   description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
   termsOfService: https://www.shadeform.ai/terms
   contact:
@@ -109,40 +109,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    AddSshKeyRequest:
-      type: object
-      required:
-      - name
-      - public_key
-      properties:
-        name:
-          type: string
-          description: The name of the SSH key.
-        public_key:
-          type: string
-          description: The SSH public key material.
-    SshKey:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        public_key:
-          type: string
-        default:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     CreateIdResponse:
       type: object
       required:
@@ -159,6 +125,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SshKey'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    SshKey:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        public_key:
+          type: string
+        default:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    AddSshKeyRequest:
+      type: object
+      required:
+      - name
+      - public_key
+      properties:
+        name:
+          type: string
+          description: The name of the SSH key.
+        public_key:
+          type: string
+          description: The SSH public key material.
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -166,14 +166,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
+    BadRequest:
+      description: The request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or failed validation.
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
       content:
         application/json:
           schema:

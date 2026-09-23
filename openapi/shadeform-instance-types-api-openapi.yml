@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Shadeform Instance Types API
   description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
@@ -78,44 +78,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Availability:
-      type: object
-      properties:
-        region:
-          type: string
-        available:
-          type: boolean
-        display_name:
-          type: string
-    BootTime:
-      type: object
-      properties:
-        min_boot_in_sec:
-          type: integer
-        max_boot_in_sec:
-          type: integer
-    Configuration:
-      type: object
-      description: Hardware and OS configuration of an instance type or instance.
-      properties:
-        memory_in_gb:
-          type: integer
-        storage_in_gb:
-          type: integer
-        vcpus:
-          type: integer
-        num_gpus:
-          type: integer
-        gpu_type:
-          type: string
-        vram_per_gpu_in_gb:
-          type: integer
-        interconnect:
-          type: string
-        os_options:
-          type: array
-          items:
-            type: string
     Error:
       type: object
       properties:
@@ -123,13 +85,6 @@ components:
           type: string
         message:
           type: string
-    InstanceTypesResponse:
-      type: object
-      properties:
-        instance_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstanceType'
     InstanceType:
       type: object
       properties:
@@ -161,6 +116,51 @@ components:
             $ref: '#/components/schemas/Availability'
         boot_time:
           $ref: '#/components/schemas/BootTime'
+    Availability:
+      type: object
+      properties:
+        region:
+          type: string
+        available:
+          type: boolean
+        display_name:
+          type: string
+    Configuration:
+      type: object
+      description: Hardware and OS configuration of an instance type or instance.
+      properties:
+        memory_in_gb:
+          type: integer
+        storage_in_gb:
+          type: integer
+        vcpus:
+          type: integer
+        num_gpus:
+          type: integer
+        gpu_type:
+          type: string
+        vram_per_gpu_in_gb:
+          type: integer
+        interconnect:
+          type: string
+        os_options:
+          type: array
+          items:
+            type: string
+    InstanceTypesResponse:
+      type: object
+      properties:
+        instance_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstanceType'
+    BootTime:
+      type: object
+      properties:
+        min_boot_in_sec:
+          type: integer
+        max_boot_in_sec:
+          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-API-KEY.

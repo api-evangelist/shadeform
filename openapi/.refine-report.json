@@ -1,11 +1,7 @@
 {
   "provider": "shadeform",
   "sources": [
-    "shadeform-instance-types-api-openapi.yml",
-    "shadeform-instances-api-openapi.yml",
-    "shadeform-ssh-keys-api-openapi.yml",
-    "shadeform-templates-api-openapi.yml",
-    "shadeform-volumes-api-openapi.yml"
+    "_original/shadeform-openapi.yml"
   ],
   "outputs": [
     "shadeform-instance-types-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shadeform-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "shadeform-instance-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shadeform-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shadeform-ssh-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shadeform-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shadeform-volumes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

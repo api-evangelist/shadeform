@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Shadeform Instance Types Templates API
+  title: Shadeform Templates API
   description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
   termsOfService: https://www.shadeform.ai/terms
   contact:
@@ -133,17 +133,74 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Template:
-      allOf:
-      - type: object
-        properties:
-          id:
-            type: string
-            format: uuid
-          created_at:
-            type: string
-            format: date-time
-      - $ref: '#/components/schemas/TemplateSaveRequest'
+    LaunchConfiguration:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    VolumeMount:
+      type: object
+      properties:
+        host_path:
+          type: string
+        container_path:
+          type: string
+    Env:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    DockerConfiguration:
+      type: object
+      required:
+      - image
+      properties:
+        image:
+          type: string
+          description: Docker image URI.
+        args:
+          type: string
+        shared_memory_in_gb:
+          type: integer
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+        port_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortMapping'
+        volume_mounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeMount'
+        registry_credentials:
+          $ref: '#/components/schemas/RegistryCredentials'
+    RegistryCredentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
     ScriptConfiguration:
       type: object
       required:
@@ -152,6 +209,15 @@ components:
         base64_script:
           type: string
           description: Base64-encoded startup script.
+    AutoDelete:
+      type: object
+      description: Triggers that automatically delete the instance.
+      properties:
+        delete_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
     TemplateSaveRequest:
       type: object
       required:
@@ -181,46 +247,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Env'
-    Error:
+    Template:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+      - $ref: '#/components/schemas/TemplateSaveRequest'
+    Networking:
       type: object
+      description: Firewall and network rules for a template.
       properties:
-        code:
-          type: string
-        message:
-          type: string
-    DockerConfiguration:
-      type: object
-      required:
-      - image
-      properties:
-        image:
-          type: string
-          description: Docker image URI.
-        args:
-          type: string
-        shared_memory_in_gb:
-          type: integer
-        envs:
+        firewall_rules:
           type: array
           items:
-            $ref: '#/components/schemas/Env'
-        port_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/PortMapping'
-        volume_mounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeMount'
-        registry_credentials:
-          $ref: '#/components/schemas/RegistryCredentials'
-    TemplatesResponse:
-      type: object
-      properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
+            type: object
+            properties:
+              port:
+                type: integer
+              protocol:
+                type: string
+              source:
+                type: string
     PortMapping:
       type: object
       properties:
@@ -237,36 +289,6 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the created resource.
-    LaunchConfiguration:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - docker
-          - script
-        docker_configuration:
-          $ref: '#/components/schemas/DockerConfiguration'
-        script_configuration:
-          $ref: '#/components/schemas/ScriptConfiguration'
-    VolumeMount:
-      type: object
-      properties:
-        host_path:
-          type: string
-        container_path:
-          type: string
-    AutoDelete:
-      type: object
-      description: Triggers that automatically delete the instance.
-      properties:
-        delete_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
     Alert:
       type: object
       description: Triggers that send an alert (e.g. email) for the instance.
@@ -278,35 +300,13 @@ components:
           type: integer
         email:
           type: string
-    Env:
+    TemplatesResponse:
       type: object
       properties:
-        name:
-          type: string
-        value:
-          type: string
-    Networking:
-      type: object
-      description: Firewall and network rules for a template.
-      properties:
-        firewall_rules:
+        templates:
           type: array
           items:
-            type: object
-            properties:
-              port:
-                type: integer
-              protocol:
-                type: string
-              source:
-                type: string
-    RegistryCredentials:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
+            $ref: '#/components/schemas/Template'
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -314,14 +314,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
+    BadRequest:
+      description: The request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or failed validation.
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
       content:
         application/json:
           schema:

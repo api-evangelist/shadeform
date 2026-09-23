@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Shadeform Instance Types Volumes API
+  title: Shadeform Volumes API
   description: Shadeform is a GPU cloud marketplace exposing a single REST API to deploy and manage GPU compute across many underlying clouds. The API standardizes instance types, availability, and per-GPU-hour pricing across providers, and lets you launch, inspect, restart, update, and delete instances, manage persistent volumes and SSH keys, and save reusable launch templates. All requests are authenticated with an X-API-KEY header.
   termsOfService: https://www.shadeform.ai/terms
   contact:
@@ -109,26 +109,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    CreateVolumeRequest:
+    CreateIdResponse:
       type: object
       required:
-      - cloud
-      - region
-      - size_in_gb
-      - name
+      - id
       properties:
-        cloud:
+        id:
           type: string
-          example: hyperstack
-        region:
-          type: string
-          example: canada-1
-        size_in_gb:
-          type: integer
-          example: 100
-        name:
-          type: string
-          example: My storage volume
+          format: uuid
+          description: The unique identifier of the created resource.
     VolumeType:
       type: object
       properties:
@@ -143,6 +132,13 @@ components:
         hourly_price:
           type: integer
           description: Hourly price per GB in cents.
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     VolumeTypesResponse:
       type: object
       properties:
@@ -169,6 +165,26 @@ components:
         created_at:
           type: string
           format: date-time
+    CreateVolumeRequest:
+      type: object
+      required:
+      - cloud
+      - region
+      - size_in_gb
+      - name
+      properties:
+        cloud:
+          type: string
+          example: hyperstack
+        region:
+          type: string
+          example: canada-1
+        size_in_gb:
+          type: integer
+          example: 100
+        name:
+          type: string
+          example: My storage volume
     VolumesResponse:
       type: object
       properties:
@@ -176,40 +192,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Volume'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    CreateIdResponse:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the created resource.
-  parameters:
-    VolumeId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-      description: The unique identifier of the volume.
   responses:
     NotFound:
       description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
       content:
         application/json:
           schema:
@@ -220,6 +205,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    VolumeId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the volume.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
