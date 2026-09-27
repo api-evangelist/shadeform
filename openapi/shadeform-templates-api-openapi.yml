@@ -133,20 +133,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    LaunchConfiguration:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - docker
-          - script
-        docker_configuration:
-          $ref: '#/components/schemas/DockerConfiguration'
-        script_configuration:
-          $ref: '#/components/schemas/ScriptConfiguration'
     Error:
       type: object
       properties:
@@ -154,61 +140,6 @@ components:
           type: string
         message:
           type: string
-    VolumeMount:
-      type: object
-      properties:
-        host_path:
-          type: string
-        container_path:
-          type: string
-    Env:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    DockerConfiguration:
-      type: object
-      required:
-      - image
-      properties:
-        image:
-          type: string
-          description: Docker image URI.
-        args:
-          type: string
-        shared_memory_in_gb:
-          type: integer
-        envs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Env'
-        port_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/PortMapping'
-        volume_mounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeMount'
-        registry_credentials:
-          $ref: '#/components/schemas/RegistryCredentials'
-    RegistryCredentials:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-    ScriptConfiguration:
-      type: object
-      required:
-      - base64_script
-      properties:
-        base64_script:
-          type: string
-          description: Base64-encoded startup script.
     AutoDelete:
       type: object
       description: Triggers that automatically delete the instance.
@@ -218,6 +149,77 @@ components:
           format: date-time
         spend_limit_in_cents:
           type: integer
+    PortMapping:
+      type: object
+      properties:
+        host_port:
+          type: integer
+        container_port:
+          type: integer
+    Networking:
+      type: object
+      description: Firewall and network rules for a template.
+      properties:
+        firewall_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              port:
+                type: integer
+              protocol:
+                type: string
+              source:
+                type: string
+    ScriptConfiguration:
+      type: object
+      required:
+      - base64_script
+      properties:
+        base64_script:
+          type: string
+          description: Base64-encoded startup script.
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    RegistryCredentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Env:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    CreateIdResponse:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
+    VolumeMount:
+      type: object
+      properties:
+        host_path:
+          type: string
+        container_path:
+          type: string
     TemplateSaveRequest:
       type: object
       required:
@@ -258,48 +260,6 @@ components:
             type: string
             format: date-time
       - $ref: '#/components/schemas/TemplateSaveRequest'
-    Networking:
-      type: object
-      description: Firewall and network rules for a template.
-      properties:
-        firewall_rules:
-          type: array
-          items:
-            type: object
-            properties:
-              port:
-                type: integer
-              protocol:
-                type: string
-              source:
-                type: string
-    PortMapping:
-      type: object
-      properties:
-        host_port:
-          type: integer
-        container_port:
-          type: integer
-    CreateIdResponse:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the created resource.
-    Alert:
-      type: object
-      description: Triggers that send an alert (e.g. email) for the instance.
-      properties:
-        alert_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
-        email:
-          type: string
     TemplatesResponse:
       type: object
       properties:
@@ -307,15 +267,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Template'
+    LaunchConfiguration:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
+    DockerConfiguration:
+      type: object
+      required:
+      - image
+      properties:
+        image:
+          type: string
+          description: Docker image URI.
+        args:
+          type: string
+        shared_memory_in_gb:
+          type: integer
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+        port_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortMapping'
+        volume_mounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeMount'
+        registry_credentials:
+          $ref: '#/components/schemas/RegistryCredentials'
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or failed validation.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

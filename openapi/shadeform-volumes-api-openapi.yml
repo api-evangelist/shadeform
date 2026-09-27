@@ -108,16 +108,23 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    VolumeId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the volume.
   schemas:
-    CreateIdResponse:
+    Error:
       type: object
-      required:
-      - id
       properties:
-        id:
+        code:
           type: string
-          format: uuid
-          description: The unique identifier of the created resource.
+        message:
+          type: string
     VolumeType:
       type: object
       properties:
@@ -132,20 +139,6 @@ components:
         hourly_price:
           type: integer
           description: Hourly price per GB in cents.
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    VolumeTypesResponse:
-      type: object
-      properties:
-        volume_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeType'
     Volume:
       type: object
       properties:
@@ -165,6 +158,20 @@ components:
         created_at:
           type: string
           format: date-time
+    VolumesResponse:
+      type: object
+      properties:
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volume'
+    VolumeTypesResponse:
+      type: object
+      properties:
+        volume_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeType'
     CreateVolumeRequest:
       type: object
       required:
@@ -185,16 +192,18 @@ components:
         name:
           type: string
           example: My storage volume
-    VolumesResponse:
+    CreateIdResponse:
       type: object
+      required:
+      - id
       properties:
-        volumes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Volume'
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
       content:
         application/json:
           schema:
@@ -205,21 +214,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    VolumeId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-      description: The unique identifier of the volume.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

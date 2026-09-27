@@ -85,6 +85,29 @@ components:
           type: string
         message:
           type: string
+    BootTime:
+      type: object
+      properties:
+        min_boot_in_sec:
+          type: integer
+        max_boot_in_sec:
+          type: integer
+    Availability:
+      type: object
+      properties:
+        region:
+          type: string
+        available:
+          type: boolean
+        display_name:
+          type: string
+    InstanceTypesResponse:
+      type: object
+      properties:
+        instance_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstanceType'
     InstanceType:
       type: object
       properties:
@@ -116,15 +139,6 @@ components:
             $ref: '#/components/schemas/Availability'
         boot_time:
           $ref: '#/components/schemas/BootTime'
-    Availability:
-      type: object
-      properties:
-        region:
-          type: string
-        available:
-          type: boolean
-        display_name:
-          type: string
     Configuration:
       type: object
       description: Hardware and OS configuration of an instance type or instance.
@@ -147,20 +161,6 @@ components:
           type: array
           items:
             type: string
-    InstanceTypesResponse:
-      type: object
-      properties:
-        instance_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstanceType'
-    BootTime:
-      type: object
-      properties:
-        min_boot_in_sec:
-          type: integer
-        max_boot_in_sec:
-          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-API-KEY.
