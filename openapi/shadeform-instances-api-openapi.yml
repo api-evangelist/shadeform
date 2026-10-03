@@ -132,7 +132,47 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    LaunchConfiguration:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
+    RegistryCredentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
     Instance:
       type: object
       required:
@@ -216,111 +256,6 @@ components:
           format: date-time
         boot_time:
           $ref: '#/components/schemas/BootTime'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    InstancesResponse:
-      type: object
-      properties:
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Instance'
-    AutoDelete:
-      type: object
-      description: Triggers that automatically delete the instance.
-      properties:
-        delete_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
-    PortMapping:
-      type: object
-      properties:
-        host_port:
-          type: integer
-        container_port:
-          type: integer
-    UpdateInstanceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        auto_delete:
-          $ref: '#/components/schemas/AutoDelete'
-        alert:
-          $ref: '#/components/schemas/Alert'
-    Configuration:
-      type: object
-      description: Hardware and OS configuration of an instance type or instance.
-      properties:
-        memory_in_gb:
-          type: integer
-        storage_in_gb:
-          type: integer
-        vcpus:
-          type: integer
-        num_gpus:
-          type: integer
-        gpu_type:
-          type: string
-        vram_per_gpu_in_gb:
-          type: integer
-        interconnect:
-          type: string
-        os_options:
-          type: array
-          items:
-            type: string
-    ScriptConfiguration:
-      type: object
-      required:
-      - base64_script
-      properties:
-        base64_script:
-          type: string
-          description: Base64-encoded startup script.
-    Alert:
-      type: object
-      description: Triggers that send an alert (e.g. email) for the instance.
-      properties:
-        alert_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
-        email:
-          type: string
-    RegistryCredentials:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-    Env:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    VolumeMount:
-      type: object
-      properties:
-        host_path:
-          type: string
-        container_path:
-          type: string
     CreateInstanceResponse:
       type: object
       required:
@@ -330,6 +265,47 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the created instance.
+    PortMapping:
+      type: object
+      properties:
+        host_port:
+          type: integer
+        container_port:
+          type: integer
+    ScriptConfiguration:
+      type: object
+      required:
+      - base64_script
+      properties:
+        base64_script:
+          type: string
+          description: Base64-encoded startup script.
+    DockerConfiguration:
+      type: object
+      required:
+      - image
+      properties:
+        image:
+          type: string
+          description: Docker image URI.
+        args:
+          type: string
+        shared_memory_in_gb:
+          type: integer
+        envs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Env'
+        port_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortMapping'
+        volume_mounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeMount'
+        registry_credentials:
+          $ref: '#/components/schemas/RegistryCredentials'
     CreateInstanceRequest:
       type: object
       required:
@@ -382,6 +358,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Env'
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    UpdateInstanceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        auto_delete:
+          $ref: '#/components/schemas/AutoDelete'
+        alert:
+          $ref: '#/components/schemas/Alert'
+    AutoDelete:
+      type: object
+      description: Triggers that automatically delete the instance.
+      properties:
+        delete_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
     BootTime:
       type: object
       properties:
@@ -389,65 +398,56 @@ components:
           type: integer
         max_boot_in_sec:
           type: integer
-    LaunchConfiguration:
+    Error:
       type: object
-      required:
-      - type
       properties:
-        type:
+        code:
           type: string
-          enum:
-          - docker
-          - script
-        docker_configuration:
-          $ref: '#/components/schemas/DockerConfiguration'
-        script_configuration:
-          $ref: '#/components/schemas/ScriptConfiguration'
-    DockerConfiguration:
+        message:
+          type: string
+    Env:
       type: object
-      required:
-      - image
       properties:
-        image:
+        name:
           type: string
-          description: Docker image URI.
-        args:
+        value:
           type: string
-        shared_memory_in_gb:
+    InstancesResponse:
+      type: object
+      properties:
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+    Configuration:
+      type: object
+      description: Hardware and OS configuration of an instance type or instance.
+      properties:
+        memory_in_gb:
           type: integer
-        envs:
+        storage_in_gb:
+          type: integer
+        vcpus:
+          type: integer
+        num_gpus:
+          type: integer
+        gpu_type:
+          type: string
+        vram_per_gpu_in_gb:
+          type: integer
+        interconnect:
+          type: string
+        os_options:
           type: array
           items:
-            $ref: '#/components/schemas/Env'
-        port_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/PortMapping'
-        volume_mounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeMount'
-        registry_credentials:
-          $ref: '#/components/schemas/RegistryCredentials'
-  responses:
-    BadRequest:
-      description: The request was malformed or failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+            type: string
+    VolumeMount:
+      type: object
+      properties:
+        host_path:
+          type: string
+        container_path:
+          type: string
   parameters:
     InstanceId:
       name: id

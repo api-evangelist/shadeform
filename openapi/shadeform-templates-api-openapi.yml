@@ -133,76 +133,37 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    AutoDelete:
-      type: object
-      description: Triggers that automatically delete the instance.
-      properties:
-        delete_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
-    PortMapping:
-      type: object
-      properties:
-        host_port:
-          type: integer
-        container_port:
-          type: integer
-    Networking:
-      type: object
-      description: Firewall and network rules for a template.
-      properties:
-        firewall_rules:
-          type: array
-          items:
-            type: object
-            properties:
-              port:
-                type: integer
-              protocol:
-                type: string
-              source:
-                type: string
-    ScriptConfiguration:
+    Template:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+      - $ref: '#/components/schemas/TemplateSaveRequest'
+    LaunchConfiguration:
       type: object
       required:
-      - base64_script
+      - type
       properties:
-        base64_script:
+        type:
           type: string
-          description: Base64-encoded startup script.
-    Alert:
-      type: object
-      description: Triggers that send an alert (e.g. email) for the instance.
-      properties:
-        alert_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
-        email:
-          type: string
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
     RegistryCredentials:
       type: object
       properties:
         username:
           type: string
         password:
-          type: string
-    Env:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
           type: string
     CreateIdResponse:
       type: object
@@ -213,13 +174,6 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the created resource.
-    VolumeMount:
-      type: object
-      properties:
-        host_path:
-          type: string
-        container_path:
-          type: string
     TemplateSaveRequest:
       type: object
       required:
@@ -249,38 +203,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Env'
-    Template:
-      allOf:
-      - type: object
-        properties:
-          id:
-            type: string
-            format: uuid
-          created_at:
-            type: string
-            format: date-time
-      - $ref: '#/components/schemas/TemplateSaveRequest'
-    TemplatesResponse:
+    PortMapping:
       type: object
       properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
-    LaunchConfiguration:
+        host_port:
+          type: integer
+        container_port:
+          type: integer
+    ScriptConfiguration:
       type: object
       required:
-      - type
+      - base64_script
       properties:
-        type:
+        base64_script:
           type: string
-          enum:
-          - docker
-          - script
-        docker_configuration:
-          $ref: '#/components/schemas/DockerConfiguration'
-        script_configuration:
-          $ref: '#/components/schemas/ScriptConfiguration'
+          description: Base64-encoded startup script.
     DockerConfiguration:
       type: object
       required:
@@ -307,6 +244,69 @@ components:
             $ref: '#/components/schemas/VolumeMount'
         registry_credentials:
           $ref: '#/components/schemas/RegistryCredentials'
+    TemplatesResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    AutoDelete:
+      type: object
+      description: Triggers that automatically delete the instance.
+      properties:
+        delete_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Networking:
+      type: object
+      description: Firewall and network rules for a template.
+      properties:
+        firewall_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              port:
+                type: integer
+              protocol:
+                type: string
+              source:
+                type: string
+    Env:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    VolumeMount:
+      type: object
+      properties:
+        host_path:
+          type: string
+        container_path:
+          type: string
   responses:
     BadRequest:
       description: The request was malformed or failed validation.
@@ -314,14 +314,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
