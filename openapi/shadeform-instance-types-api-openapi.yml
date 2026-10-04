@@ -78,6 +78,58 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    BootTime:
+      type: object
+      properties:
+        min_boot_in_sec:
+          type: integer
+        max_boot_in_sec:
+          type: integer
+    Configuration:
+      type: object
+      description: Hardware and OS configuration of an instance type or instance.
+      properties:
+        memory_in_gb:
+          type: integer
+        storage_in_gb:
+          type: integer
+        vcpus:
+          type: integer
+        num_gpus:
+          type: integer
+        gpu_type:
+          type: string
+        vram_per_gpu_in_gb:
+          type: integer
+        interconnect:
+          type: string
+        os_options:
+          type: array
+          items:
+            type: string
+    InstanceTypesResponse:
+      type: object
+      properties:
+        instance_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstanceType'
+    Availability:
+      type: object
+      properties:
+        region:
+          type: string
+        available:
+          type: boolean
+        display_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     InstanceType:
       type: object
       properties:
@@ -109,58 +161,6 @@ components:
             $ref: '#/components/schemas/Availability'
         boot_time:
           $ref: '#/components/schemas/BootTime'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Availability:
-      type: object
-      properties:
-        region:
-          type: string
-        available:
-          type: boolean
-        display_name:
-          type: string
-    InstanceTypesResponse:
-      type: object
-      properties:
-        instance_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstanceType'
-    Configuration:
-      type: object
-      description: Hardware and OS configuration of an instance type or instance.
-      properties:
-        memory_in_gb:
-          type: integer
-        storage_in_gb:
-          type: integer
-        vcpus:
-          type: integer
-        num_gpus:
-          type: integer
-        gpu_type:
-          type: string
-        vram_per_gpu_in_gb:
-          type: integer
-        interconnect:
-          type: string
-        os_options:
-          type: array
-          items:
-            type: string
-    BootTime:
-      type: object
-      properties:
-        min_boot_in_sec:
-          type: integer
-        max_boot_in_sec:
-          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid X-API-KEY.

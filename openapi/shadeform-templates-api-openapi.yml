@@ -144,36 +144,15 @@ components:
             type: string
             format: date-time
       - $ref: '#/components/schemas/TemplateSaveRequest'
-    LaunchConfiguration:
+    AutoDelete:
       type: object
-      required:
-      - type
+      description: Triggers that automatically delete the instance.
       properties:
-        type:
+        delete_at:
           type: string
-          enum:
-          - docker
-          - script
-        docker_configuration:
-          $ref: '#/components/schemas/DockerConfiguration'
-        script_configuration:
-          $ref: '#/components/schemas/ScriptConfiguration'
-    RegistryCredentials:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-    CreateIdResponse:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the created resource.
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
     TemplateSaveRequest:
       type: object
       required:
@@ -203,21 +182,69 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Env'
-    PortMapping:
+    Env:
       type: object
       properties:
-        host_port:
-          type: integer
-        container_port:
-          type: integer
-    ScriptConfiguration:
+        name:
+          type: string
+        value:
+          type: string
+    CreateIdResponse:
       type: object
       required:
-      - base64_script
+      - id
       properties:
-        base64_script:
+        id:
           type: string
-          description: Base64-encoded startup script.
+          format: uuid
+          description: The unique identifier of the created resource.
+    Networking:
+      type: object
+      description: Firewall and network rules for a template.
+      properties:
+        firewall_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              port:
+                type: integer
+              protocol:
+                type: string
+              source:
+                type: string
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    LaunchConfiguration:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
     DockerConfiguration:
       type: object
       required:
@@ -244,62 +271,20 @@ components:
             $ref: '#/components/schemas/VolumeMount'
         registry_credentials:
           $ref: '#/components/schemas/RegistryCredentials'
-    TemplatesResponse:
+    RegistryCredentials:
       type: object
       properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
-    Alert:
-      type: object
-      description: Triggers that send an alert (e.g. email) for the instance.
-      properties:
-        alert_at:
+        username:
           type: string
-          format: date-time
-        spend_limit_in_cents:
+        password:
+          type: string
+    PortMapping:
+      type: object
+      properties:
+        host_port:
           type: integer
-        email:
-          type: string
-    AutoDelete:
-      type: object
-      description: Triggers that automatically delete the instance.
-      properties:
-        delete_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
+        container_port:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Networking:
-      type: object
-      description: Firewall and network rules for a template.
-      properties:
-        firewall_rules:
-          type: array
-          items:
-            type: object
-            properties:
-              port:
-                type: integer
-              protocol:
-                type: string
-              source:
-                type: string
-    Env:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
     VolumeMount:
       type: object
       properties:
@@ -307,6 +292,21 @@ components:
           type: string
         container_path:
           type: string
+    ScriptConfiguration:
+      type: object
+      required:
+      - base64_script
+      properties:
+        base64_script:
+          type: string
+          description: Base64-encoded startup script.
+    TemplatesResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
   responses:
     BadRequest:
       description: The request was malformed or failed validation.

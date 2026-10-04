@@ -132,47 +132,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed or failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    LaunchConfiguration:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - docker
-          - script
-        docker_configuration:
-          $ref: '#/components/schemas/DockerConfiguration'
-        script_configuration:
-          $ref: '#/components/schemas/ScriptConfiguration'
-    RegistryCredentials:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
     Instance:
       type: object
       required:
@@ -256,30 +216,67 @@ components:
           format: date-time
         boot_time:
           $ref: '#/components/schemas/BootTime'
-    CreateInstanceResponse:
+    UpdateInstanceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        auto_delete:
+          $ref: '#/components/schemas/AutoDelete'
+        alert:
+          $ref: '#/components/schemas/Alert'
+    AutoDelete:
+      type: object
+      description: Triggers that automatically delete the instance.
+      properties:
+        delete_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+    Env:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Alert:
+      type: object
+      description: Triggers that send an alert (e.g. email) for the instance.
+      properties:
+        alert_at:
+          type: string
+          format: date-time
+        spend_limit_in_cents:
+          type: integer
+        email:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    LaunchConfiguration:
       type: object
       required:
-      - id
+      - type
       properties:
-        id:
+        type:
           type: string
-          format: uuid
-          description: The unique identifier of the created instance.
-    PortMapping:
-      type: object
-      properties:
-        host_port:
-          type: integer
-        container_port:
-          type: integer
-    ScriptConfiguration:
-      type: object
-      required:
-      - base64_script
-      properties:
-        base64_script:
-          type: string
-          description: Base64-encoded startup script.
+          enum:
+          - docker
+          - script
+        docker_configuration:
+          $ref: '#/components/schemas/DockerConfiguration'
+        script_configuration:
+          $ref: '#/components/schemas/ScriptConfiguration'
     DockerConfiguration:
       type: object
       required:
@@ -358,38 +355,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Env'
-    Alert:
-      type: object
-      description: Triggers that send an alert (e.g. email) for the instance.
-      properties:
-        alert_at:
-          type: string
-          format: date-time
-        spend_limit_in_cents:
-          type: integer
-        email:
-          type: string
-    UpdateInstanceRequest:
+    InstancesResponse:
       type: object
       properties:
-        name:
-          type: string
-        tags:
+        instances:
           type: array
           items:
-            type: string
-        auto_delete:
-          $ref: '#/components/schemas/AutoDelete'
-        alert:
-          $ref: '#/components/schemas/Alert'
-    AutoDelete:
+            $ref: '#/components/schemas/Instance'
+    RegistryCredentials:
       type: object
-      description: Triggers that automatically delete the instance.
       properties:
-        delete_at:
+        username:
           type: string
-          format: date-time
-        spend_limit_in_cents:
+        password:
+          type: string
+    PortMapping:
+      type: object
+      properties:
+        host_port:
+          type: integer
+        container_port:
           type: integer
     BootTime:
       type: object
@@ -398,27 +383,6 @@ components:
           type: integer
         max_boot_in_sec:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Env:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    InstancesResponse:
-      type: object
-      properties:
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Instance'
     Configuration:
       type: object
       description: Hardware and OS configuration of an instance type or instance.
@@ -448,6 +412,42 @@ components:
           type: string
         container_path:
           type: string
+    ScriptConfiguration:
+      type: object
+      required:
+      - base64_script
+      properties:
+        base64_script:
+          type: string
+          description: Base64-encoded startup script.
+    CreateInstanceResponse:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created instance.
+  responses:
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     InstanceId:
       name: id

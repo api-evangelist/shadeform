@@ -108,21 +108,16 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    SshKeyId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The unique identifier of the SSH key.
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    SshKeysResponse:
-      type: object
-      properties:
-        ssh_keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/SshKey'
     CreateIdResponse:
       type: object
       required:
@@ -147,6 +142,13 @@ components:
         created_at:
           type: string
           format: date-time
+    SshKeysResponse:
+      type: object
+      properties:
+        ssh_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/SshKey'
     AddSshKeyRequest:
       type: object
       required:
@@ -159,7 +161,20 @@ components:
         public_key:
           type: string
           description: The SSH public key material.
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
   responses:
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource was not found.
       content:
@@ -172,21 +187,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    SshKeyId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-      description: The unique identifier of the SSH key.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -109,22 +109,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    CreateIdResponse:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the created resource.
     VolumeType:
       type: object
       properties:
@@ -139,6 +123,48 @@ components:
         hourly_price:
           type: integer
           description: Hourly price per GB in cents.
+    CreateIdResponse:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created resource.
+    Volume:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        cloud:
+          type: string
+        region:
+          type: string
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    VolumeTypesResponse:
+      type: object
+      properties:
+        volume_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeType'
+    VolumesResponse:
+      type: object
+      properties:
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volume'
     CreateVolumeRequest:
       type: object
       required:
@@ -159,40 +185,20 @@ components:
         name:
           type: string
           example: My storage volume
-    VolumeTypesResponse:
+    Error:
       type: object
       properties:
-        volume_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeType'
-    Volume:
-      type: object
-      properties:
-        id:
+        code:
           type: string
-          format: uuid
-        cloud:
+        message:
           type: string
-        region:
-          type: string
-        name:
-          type: string
-        size_in_gb:
-          type: integer
-        status:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-    VolumesResponse:
-      type: object
-      properties:
-        volumes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Volume'
   responses:
+    Unauthorized:
+      description: Missing or invalid X-API-KEY.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource was not found.
       content:
@@ -201,12 +207,6 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-API-KEY.
       content:
         application/json:
           schema:
