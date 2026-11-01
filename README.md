@@ -1,4 +1,4 @@
-# Shadeform (shadeform)
+# Shadeform
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,142 +66,124 @@
 
 Shadeform is a GPU cloud marketplace that exposes a single REST API for deploying and managing GPU compute across many underlying clouds. One interface lets you compare real-time availability and per-GPU-hour pricing, then launch, inspect, restart, and delete instances, attach volumes and SSH keys, and reuse saved launch templates across providers such as Lambda, Nebius, Crusoe, and Hyperstack.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/shadeform/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shadeform/refs/heads/main/apis.yml)
+**Areas:** GPU · Cloud · Marketplace · Compute · Infrastructure · Artificial Intelligence
 
-## Tags
+## Shadeform on APIs.io
 
-- GPU
-- Cloud
-- Marketplace
-- Compute
-- Infrastructure
-- AI
+Everything profiled for Shadeform is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shadeform/](https://apis.io/providers/shadeform/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Shadeform Instance Types API](https://apis.io/apis/shadeform/shadeform-instance-types-api/) — Query standardized instance types, availability, and pricing.
+- [Shadeform Instances API](https://apis.io/apis/shadeform/shadeform-instances-api/) — Launch and manage GPU instances across clouds.
+- [Shadeform SSH Keys API](https://apis.io/apis/shadeform/shadeform-ssh-keys-api/) — Manage SSH public keys for instance access.
+- [Shadeform Templates API](https://apis.io/apis/shadeform/shadeform-templates-api/) — Save and reuse launch templates.
+- [Shadeform Volumes API](https://apis.io/apis/shadeform/shadeform-volumes-api/) — Manage persistent storage volumes.
 
-## APIs
+### Published properties
 
-### Shadeform Instances API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, list, inspect, restart, update, and delete GPU instances across every supported cloud through one standardized interface, with Docker or script launch configurations, auto-delete and spend-alert triggers, tags, and environment variables.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.shadeform.ai/api-reference/instances/instances](https://docs.shadeform.ai/api-reference/instances/instances)
-- **Base URL:** `https://api.shadeform.ai/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Shadeform Agentic Access](https://apis.io/agentic-access/shadeform/shadeform-agentic-access/)
 
-- Instances
-- GPU
-- Compute
-- Provisioning
+#### Collections (6)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.shadeform.ai/getting-started/quickstart)
-- [API Reference](https://docs.shadeform.ai/api-reference/instances/instances)
-- [OpenAPI](openapi/shadeform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shadeform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shadeform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Shadeform API](https://apis.io/collections/shadeform/open-shadeform/)
+- [Shadeform Instance Types API](https://apis.io/collections/shadeform/open-shadeform-instance-types-api/)
+- [Shadeform Instance Types Instances API](https://apis.io/collections/shadeform/open-shadeform-instances-api/)
+- [Shadeform Instance Types SSH Keys API](https://apis.io/collections/shadeform/open-shadeform-ssh-keys-api/)
+- [Shadeform Instance Types Templates API](https://apis.io/collections/shadeform/open-shadeform-templates-api/)
+- [Shadeform Instance Types Volumes API](https://apis.io/collections/shadeform/open-shadeform-volumes-api/)
 
-### Shadeform Instance Types & Availability API
+#### Security (2)
 
-Query standardized GPU instance types, their configurations, hourly price in cents, deployment type, boot-time estimates, and per-region availability across providers, with filtering by cloud, region, GPU type, GPU count, and availability, and sorting by price.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.shadeform.ai/api-reference/instances/instances-types](https://docs.shadeform.ai/api-reference/instances/instances-types)
-- **Base URL:** `https://api.shadeform.ai/v1`
+- [Shadeform Authentication](https://apis.io/security/shadeform/shadeform-authentication/)
+- [Shadeform Domain Security](https://apis.io/security/shadeform/shadeform-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Instance Types
-- Availability
-- Pricing
-- GPU
+Published plans, tiers and prices.
 
-#### Properties
+- [Shadeform Plans Pricing](https://apis.io/plans/shadeform/shadeform-plans-pricing/)
 
-- [Documentation](https://docs.shadeform.ai/api-reference/instances/instances-types)
-- [API Reference](https://docs.shadeform.ai/api-reference/instances/instances-types)
-- [OpenAPI](openapi/shadeform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shadeform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shadeform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Shadeform Templates API
+Published request limits.
 
-Save, list, inspect, update, and delete reusable launch templates that bundle launch configuration, auto-delete and alert thresholds, volume mounts, networking, tags, and environment variables; includes a featured/public templates listing.
+- [Shadeform Rate Limits](https://apis.io/rate-limits/shadeform/shadeform-rate-limits/)
 
-- **Human URL:** [https://docs.shadeform.ai/api-reference/templates/templates](https://docs.shadeform.ai/api-reference/templates/templates)
-- **Base URL:** `https://api.shadeform.ai/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Templates
-- Launch Configuration
-- Reuse
+- [Shadeform Finops](https://apis.io/finops/shadeform/shadeform-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.shadeform.ai/api-reference/templates/templates)
-- [API Reference](https://docs.shadeform.ai/api-reference/templates/templates)
-- [OpenAPI](openapi/shadeform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shadeform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shadeform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Shadeform Volumes API
-
-Create, list, inspect, and delete persistent storage volumes scoped to a cloud and region, and query the supported volume types, to attach durable storage to GPU instances.
-
-- **Human URL:** [https://docs.shadeform.ai/api-reference/volumes/volumes](https://docs.shadeform.ai/api-reference/volumes/volumes)
-- **Base URL:** `https://api.shadeform.ai/v1`
-
-#### Tags
-
-- Volumes
-- Storage
-- Block Storage
-
-#### Properties
-
-- [Documentation](https://docs.shadeform.ai/api-reference/volumes/volumes)
-- [API Reference](https://docs.shadeform.ai/api-reference/volumes/volumes)
-- [OpenAPI](openapi/shadeform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shadeform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shadeform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Shadeform SSH Keys API
-
-Add, list, inspect, delete, and set a default SSH public key used to grant secure shell access to launched GPU instances.
-
-- **Human URL:** [https://docs.shadeform.ai/api-reference/sshkeys/sshkeys](https://docs.shadeform.ai/api-reference/sshkeys/sshkeys)
-- **Base URL:** `https://api.shadeform.ai/v1`
-
-#### Tags
-
-- SSH Keys
-- Access
-- Security
-
-#### Properties
-
-- [Documentation](https://docs.shadeform.ai/api-reference/sshkeys/sshkeys)
-- [API Reference](https://docs.shadeform.ai/api-reference/sshkeys/sshkeys)
-- [OpenAPI](openapi/shadeform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shadeform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shadeform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/shadeform)
-- [LinkedIn](https://www.linkedin.com/company/shadeformai)
 - [Website](https://www.shadeform.ai)
 - [Documentation](https://docs.shadeform.ai)
-- [Plans](plans/shadeform-plans-pricing.yml)
-- [Rate Limits](rate-limits/shadeform-rate-limits.yml)
-- [Fin Ops](finops/shadeform-finops.yml)
+- [Blog](https://shadeform.com/resources/articles)
+- [GitHub](https://github.com/shadeform)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shadeform/](https://apis.io/providers/shadeform/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Shadeform: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shadeform/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
